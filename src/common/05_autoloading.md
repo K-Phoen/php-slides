@@ -9,6 +9,7 @@ PHP won't magically load your classes by itself.
 You have to manually include the class declaration:
 
     !php
+    // src/Model/Octopus.php
     class Octopus
     {
         public function scream()
@@ -20,13 +21,14 @@ You have to manually include the class declaration:
 If you want to create a new `Octopus`, you will write the following code:
 
     !php
+    // src/Application.php
     $paul = new Octopus();
     $paul->scream();
 
 As the class declaration isn't included, PHP raises a `Fatal Error`:
 
     !bash
-    Fatal error: Class 'Octopus' not found in /path/to/file.php
+    Fatal error: Class 'Octopus' not found in […]/src/Application.php
 
 ---
 
@@ -35,7 +37,7 @@ As the class declaration isn't included, PHP raises a `Fatal Error`:
 Include the class definition before instantiating it:
 
     !php
-    require __DIR__ . '../Model/Octopus.php';
+    require __DIR__ . '/Model/Octopus.php';
 
     $paul = new Octopus();
     $paul->scream();
@@ -46,7 +48,7 @@ But, what happens when the class is included again, somewhere else?
 
     !php
     // somewhere further in your application
-    require __DIR__ . '../Model/Octopus.php';
+    require __DIR__ . '/Model/Octopus.php';
 
     class Squid extends Octopus
     {
@@ -65,7 +67,7 @@ The `require_once()` function is identical to `require()` except that PHP will
 check whether the file has already been included:
 
     !php
-    require_once __DIR__ . '../Model/Octopus.php';
+    require_once __DIR__ . '/Model/Octopus.php';
 
     $paul = new Octopus();
     $paul->scream();
@@ -74,7 +76,7 @@ And somewhere else:
 
     !php
     // somewhere further in your application
-    require_once __DIR__ . '../Model/Octopus.php';
+    require_once __DIR__ . '/Model/Octopus.php';
 
     class Squid extends Octopus
     {
@@ -90,8 +92,6 @@ Multiple `require_once()` can turn into a nightmare when you deal with more than
 a few files:
 
     !php
-    <?php
-
     /**
      * lib/Model/Location.php
      */
@@ -109,7 +109,7 @@ a few files:
 
 ---
 
-# Rethinking The Way You Load Classes
+# Rethinking The Way You Load Classes
 
 PHP 5.2 and upper provides a usable autoloading API with performances close to
 the use of `require_once()` thanks to the following functions:

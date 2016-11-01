@@ -1,15 +1,14 @@
 PHP
 ===
 
-PHP lectures by [William Durand](http://github.com/willdurand).
+PHP lectures by [William Durand](http://github.com/willdurand), adapted by [Kévin
+Gomez](https://github.com/K-Phoen/).
 
 
 Installation
 ------------
 
-Get the code:
-
-    git clone git://github.com/licpro/php-slides.git --recursive
+Clone this repository.
 
 Install [landslide](https://github.com/adamzap/landslide#installation), then
 build the presentations:
@@ -29,10 +28,10 @@ favorite browser.
 Credits
 -------
 
+* [William Durand](http://github.com/couac) as original author of these slides ;
 * [Julien Muetton](http://github.com/themouette) as co-author of the very first
-  version of these slides
-* [All
-  contributors](https://github.com/willdurand-edu/php-slides/graphs/contributors)
+  version of these slides ;
+* [All contributors](https://github.com/K-Phoen/php-slides/graphs/contributors).
 
 
 License

@@ -78,8 +78,8 @@ An HTTP verb is an action to perform on a **resource** located at a given
 
 Response is made of:
 
-* Some **headers** to describe the content;
 * The response's **status code**;
+* Some **headers** to describe the content;
 * The **content** of the response;
 
 Here is an example:
@@ -165,7 +165,7 @@ You can always use the following, but you need to parse them by yourself:
 # HTTP Parameters (2/2)
 
     !http
-    GET /my/simple/uri?a=1&id=2 HTTP/1.1
+    GET /my/simple/uri?a=1&id=2&c=42 HTTP/1.1
     Host: example.org
     Content-Type: text/plain; charset=utf-8
     Content-Length: 14

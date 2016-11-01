@@ -2,35 +2,30 @@
 
 ---
 
-# William DURAND
+# Kévin Gomez
 
-PhD / **CTO TailorDev**
+(Web) **Developer** / **OSS enthusiast**
 
-Graduated from IUT, ISIMA, Blaise Pascal University. Worked at:
+Graduated from IUT, Aix-Marseille University and Blaise Pascal University.
 
-* [Michelin](http://www.michelin.fr/) (Clermont-Fd, France);
-* [Nelmio](http://nelm.io) (Zürich, Switzerland);
-* [e-TF1](http://www.tf1.fr/) (Paris, France);
-* [Prizee.com](http://prizee.com) (Clermont-Fd, France).
+Worked since 2009 in various companies. Currently employed by TEA — The Ebook
+Alternative.
 
-Open-Source evangelist:
+Open-Source enthusiast & contributor:
 
-* Lead developer of [Geocoder](http://geocoder-php.org/), and [several other
-  projects](https://github.com/willdurand);
-* (Inactive?) Contributor on Symfony.
+* Lead developer of [RulerZ](https://github.com/K-Phoen/rulerz) ;
+* long time maintainer of [VichUploaderBundle](https://github.com/dustin10/VichUploaderBundle/) ;
+* contributing to [PHPSA](https://github.com/ovr/phpsa) ;
+* working on [several other projects](https://github.com/K-Phoen).
 
 <p class="center">
-    <i class="fa fa-twitter"></i> <a href="https://twitter.com/couac">twitter.com/couac</a>
+    <i class="fa fa-twitter"></i> <a href="https://twitter.com/KPhoen">twitter.com/KPhoen</a>
     &nbsp;|&nbsp;
-    <i class="fa fa-github"></i> <a href="https://github.com/willdurand">github.com/willdurand</a>
+    <i class="fa fa-github"></i> <a href="https://github.com/K-Phoen">github.com/K-Phoen</a>
     &nbsp;|&nbsp;
-    <i class="fa fa-globe"></i> <a href="http://www.williamdurand.fr">williamdurand.fr</a>
+    <i class="fa fa-globe"></i> <a href="http://www.kevingomez.fr">kevingomez.fr</a>
 </p>
 
 ---
 
-# [edu@drnd.me](mailto:edu@drnd.me)
-
----
-
-# ![](images/clermontech.png)
+# [contact@kevingomez.fr](mailto:contact@kevingomez.fr)

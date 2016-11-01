@@ -270,15 +270,15 @@ use scalar types such as `int` or `string` with PHP < 7.0:
 Works with `int`, `float`, `string`, and `bool`:
 
     !php
-    function sumOfInts(int ...$ints) {
-        return array_sum($ints);
+    function sumOfInts(int $a, int $b) {
+        return $a + $b;
     }
 
 ### Return Type Declarations
 
     !php
-    function sumOfInts(int ...$ints) : int {
-        return array_sum($ints);
+    function sumOfInts(int $a, int $b): int {
+        return $a + $b;
     }
 
 ---
@@ -412,6 +412,28 @@ New operator `...` as of PHP 5.6:
 
     !php
     function sum(...$numbers)
+    {
+        return array_sum($numbers);
+    }
+
+    echo sum(1, 2);
+    // 3
+
+### Argument Unpacking
+
+    !php
+    $numbers = [ 2, 3 ];
+    echo sum(1, ...$numbers);
+    // 6
+
+---
+
+# Variadic Functions & type hints
+
+Works with type hints too!
+
+    !php
+    function sum(int ...$numbers): int
     {
         return array_sum($numbers);
     }
@@ -618,7 +640,7 @@ and:
     !php
     __toString() { /* ... */ }
 
-Other methods are not really useful but it's worth knowing them (`__get()`, `__set()`).
+Other methods are not really useful but it's worth knowing them (`__get()`, `__set()`, `__invoke()`, …).
 
 > Read more about **magic methods**:
 [http://php.net/manual/en/language.oop5.magic.php](http://php.net/manual/en/language.oop5.magic.php).
@@ -638,12 +660,13 @@ The heart of a generator function is the `yield` keyword.
 > * [What Generators Can Do For
 You](http://blog.ircmaxell.com/2012/07/what-generators-can-do-for-you.html);
 > * [https://github.com/nikic/iter](https://github.com/nikic/iter) (examples).
+> * [use-cases for generators](https://blog.pascal-martin.fr/post/php-generators-week.html) (several blog posts)
 
 ---
 
 # Errors in PHP 7
 
-No more **Fatal Errors** \o/
+<s>No more</s> Way less **Fatal Errors** \o/
 
 Many fatal and recoverable fatal errors have been converted to exceptions
 inheriting from the new `Error` class, which itself implements the `Throwable`
