@@ -2,7 +2,7 @@
 
 TMP_DIR=/tmp/licpro-php-slides
 
-git stash
+git stash -u
 
 landslide iut-php.cfg
 landslide iut-extended.cfg
