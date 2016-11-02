@@ -5,7 +5,7 @@
 
 Typical client request process in MVC architecture:
 
-![](../images/mvc.png)
+![](../images/MVC.png)
 
 ---
 
@@ -133,7 +133,7 @@ It **should not** contain any business logic.
             TemplateEngine $engine
         ) {
             $this->repository = $repository;
-            $this->engine     = $engine;
+            $this->engine = $engine;
         }
 
         public function listAction()
