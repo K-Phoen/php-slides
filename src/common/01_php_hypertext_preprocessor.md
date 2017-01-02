@@ -2,7 +2,7 @@
 
 ---
 
-# History & Numbers
+# History & Numbers
 
 * Created by Rasmus Lerdorf
 * 4th language on GitHub

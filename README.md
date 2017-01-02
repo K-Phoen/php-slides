@@ -13,9 +13,7 @@ Clone this repository.
 Install [landslide](https://github.com/adamzap/landslide#installation), then
 build the presentations:
 
-    landslide iut-php.cfg
-    landslide iut-extended.cfg
-    landslide isima-php.cfg
+    make
 
 
 Usage

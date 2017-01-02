@@ -23,6 +23,7 @@
 * Read other people's code is the fastest way to learn;
 * Think about what you have to do;
 * Read the code, not the doc;
+* Always ask "why?";
 * Never trust the user;
 * Think again;
 * Simple is always better than complicated;

@@ -181,7 +181,7 @@ If authentication fails, the server should return a `401` status code.
         $user = $request->getParameter('user');
         $pass = $request->getParameter('password');
 
-        if ('will' === $user && 'will' === $pass) {
+        if ($user === 'root' && $pass === 'quarante-deux') {
             $_SESSION['is_authenticated'] = true;
 
             return $app->redirect('/');
