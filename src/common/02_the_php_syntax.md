@@ -6,11 +6,11 @@
 
 4 **scalar** types: `boolean`, `integer`, `float`, `string`;
 
-2 **compound** types: `array`, `object`;
+3 **compound** types: `array`, `object`, `callable`;
 
 2 **special** types: `resource`, `null`;
 
-And 3 **pseudo** types: `mixed`, `number`, `callback`.
+And 5 **pseudo** types: `mixed`, `number`, `callback`, `iterable` & `void` (since PHP 7.1).
 
 **Note:** most of these types have aliases. E.g. `double` for `float`.
 
