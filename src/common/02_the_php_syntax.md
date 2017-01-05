@@ -494,7 +494,7 @@ Works with type hints too!
 
     !php
     // Interface may extend several other interfaces.
-    // This is not possible with class though!
+    // This is not possible with classes though!
     interface MyTraversable extends Traversable, Countable
     {
     }
