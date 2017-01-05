@@ -2,12 +2,12 @@
 
 ### Week #1
 
-PHP: Hypertext Preprocessor, The PHP Syntax, The PHP Command Line,
-Client/Server, REST
+PHP: Hypertext Preprocessor, The PHP Syntax, Autoloading, The PHP Command Line,
+Client/Server
 
 ### Week #2
 
-Autoloading, Leveraging PHP APIs, Dependency Management, Model View Controller
+REST, Leveraging PHP APIs, Dependency Management, Model View Controller
 
 ### Week #3
 
