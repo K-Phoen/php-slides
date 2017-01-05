@@ -523,15 +523,6 @@ Or:
         // ...
     }
 
-### PSR-0
-
-[PSR-0](http://php-fig.org/psr/psr-0/) describes a set of rules related to
-namespaces for autoloader interoperability:
-
-    !php
-    \ns\package\Class_Name      => vendor/ns/package/Class/Name.php
-    \ns\package_name\Class_Name => vendor/ns/package_name/Class/Name.php
-
 ---
 
 # Namespaces (2/2)

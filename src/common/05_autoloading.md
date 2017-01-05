@@ -187,13 +187,15 @@ The `new` algorithm in pseudo code:
             Continue
         => No
             Fatal Error
-
 ---
 
-# PSR-0 vs PSR-4
+# PSR-0 & PSR-4
 
 
 ### PSR-0
+
+[PSR-0](http://php-fig.org/psr/psr-0/) describes a set of rules related to
+namespaces for autoloader interoperability:
 
     !php
     \Zend\Mail\Message
