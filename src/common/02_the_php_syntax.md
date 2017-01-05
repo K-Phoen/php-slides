@@ -198,6 +198,8 @@ Method visibility SHOULD be set.
 
 Methods without any explicit visibility keyword are defined as `public`.
 
+Class constants visibility CAN be set (as of PHP 7.1).
+
 ---
 
 # Properties
@@ -209,31 +211,25 @@ Methods without any explicit visibility keyword are defined as `public`.
         // PHP 5.6+
         const SENTENCE        = 'The value of VALUE is ' . self::VALUE;
         const ARRAY_OF_VALUES = ['a', 'b'];
+        // PHP 7.1+
+        private const IMPLEMENTATION_VALUE = 42;
 
-        /**
-         * @var int
-         */
+        /** @var int */
         public static $count = 0;
 
-        /**
-         * @var Iterator
-         */
+        /** @var Iterator */
         public $iterator;
 
-        /**
-         * @var array
-         */
-        protected $values = array();
+        /** @var array */
+        protected $values = [];
 
-        /**
-         * @var string|null
-         */
+        /** @var string|null */
         private $language = null;
     }
 
 ---
 
-# Methods (1/4)
+# Methods (1/5)
 
     !php
     class Foo
@@ -255,13 +251,15 @@ use scalar types such as `int` or `string` with PHP < 7.0:
 
     public function doSomething(array $values);
 
+    public function doSomething(iterable $values); // accepts array + Traversable
+
     public function doSomething(callable $callback);
 
     public function doSomething(Closure $closure);
 
 ---
 
-# Methods (2/4)
+# Methods (2/5)
 
 [PHP 7](https://secure.php.net/manual/en/migration70.new-features.php) \o/
 
@@ -283,7 +281,36 @@ Works with `int`, `float`, `string`, and `bool`:
 
 ---
 
-# Methods (3/4)
+# Methods (3/5)
+
+[PHP 7.1+](https://secure.php.net/manual/en/migration71.new-features.php) \o/
+
+### Nullable types
+
+    !php
+    function foo(?string $bar): ?string {
+        var_dump($bar);
+        return $bar;
+    }
+    foo('baz'); // string(3) "baz"
+    foo(null); // NULL
+    foo(); // Uncaught Error: Too few arguments to function foo(), 0 passed
+
+### Void Return Type
+
+    !php
+    function log(string $message): void {
+        fprintf(stderr, '>> '.$message);
+    }
+
+    function log(string $message): void {
+        fprintf(stderr, '>> '.$message);
+        return true; // Fatal error: A void function must not return a value
+    }
+
+---
+
+# Methods (4/5)
 
 The `->` operator is used to call methods on objects.
 
@@ -305,7 +332,7 @@ The `->` operator is used to call methods on objects.
 
 ---
 
-# Methods (4/4)
+# Methods (5/5)
 
     !php
     public function doSomething()
