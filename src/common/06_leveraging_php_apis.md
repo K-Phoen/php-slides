@@ -158,7 +158,7 @@ component to the rescue!
 
 ---
 
-# Exceptions (1/2)
+# Exceptions (1/3)
 
 `try`-`catch` block with multiple `catch` statements:
 
@@ -182,11 +182,26 @@ Create your own exceptions:
     {
     }
 
-**Name** your named exceptions!
+**Name** your exceptions!
 
 ---
 
-# Exceptions (2/2)
+# Exceptions (2/3)
+
+Since PHP 7.1, a single `catch` block can catch multiple exceptions!
+
+    !php
+    try {
+        // ...
+    } catch (RuntimeException | LogicException $e) {
+        // do something
+    } catch (Exception $e) {
+        // do something else
+    }
+
+---
+
+# Exceptions (3/3)
 
 `try`-`catch` blocks also supports a `finally` block for code that should be run
 regardless of whether an exception has been thrown or not:
