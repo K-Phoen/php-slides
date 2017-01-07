@@ -29,3 +29,7 @@ Open-Source enthusiast & contributor:
 ---
 
 # [contact@kevingomez.fr](mailto:contact@kevingomez.fr)
+
+---
+
+# Slides originally written by [William Durand](http://williamdurand.fr/)
