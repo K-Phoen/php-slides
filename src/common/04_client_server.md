@@ -190,6 +190,42 @@ Will result in:
 
 ---
 
+# API
+
+---
+
+# Defining APIs
+
+<p></p>
+
+> « A set of subroutine definitions, **protocols**, and tools for building application
+> software » — <cite>[Wikipedia](https://en.wikipedia.org/wiki/Application_programming_interface)</cite>
+
+<span></span>
+
+> « **Sets of requirements** that govern how one application can **talk** to another »
+> — <cite>[ReadWrite](http://readwrite.com/2013/09/19/api-defined/)</cite>
+
+<span></span>
+
+> « With APIs, applications **talk to each other without any user knowledge**
+> or intervention » — <cite>[HowStuffWorks](http://money.howstuffworks.com/business-communications/how-to-leverage-an-api-for-conferencing1.htm)</cite>
+
+<span></span>
+
+> « A **contract** provided by one piece of computer software to another » —
+> <cite>[Quora](https://www.quora.com/What-is-an-API-4)</cite>
+
+---
+
+# Defining APIs
+
+* An API allows different computer systems to interact and share data together
+* It's a way for a developer or a company to say "hey, here is my data and there
+  are the services you can use, and how."
+
+---
+
 # REST
 
 ---
@@ -361,3 +397,65 @@ inspecting that resource**.
 
 > Must read: [Haters gonna
 HATEOAS](http://timelessrepo.com/haters-gonna-hateoas).
+
+---
+
+# Idempotent vs Safe methods
+
+<p></p>
+
+> « Idempotence is the property of certain operations […], that can be applied
+> multiple times without changing the result beyond the initial application »
+> — <cite>[Wikipedia](https://en.wikipedia.org/wiki/Idempotence)</cite>
+
+<span></span>
+
+> Safe methods are HTTP methods that do not modify resources
+
+---
+
+# Idempotent vs Safe methods
+
+<p></p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Idempotent</th>
+            <th>Safe</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET</td>
+            <td>Yes</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>HEAD</td>
+            <td>Yes</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>No</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>PUT</td>
+            <td>Yes</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>DELETE</td>
+            <td>Yes</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>PATCH</td>
+            <td>No (but really, it depends)</td>
+            <td>No</td>
+        </tr>
+    </tbody>
+</table>
