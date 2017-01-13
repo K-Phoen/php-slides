@@ -164,7 +164,7 @@ component to the rescue!
 
     !php
     try {
-        // ...
+        throw new ResourceNotFound();
     } catch (RuntimeException $e) {
         // do something
     } catch (Exception $e) {
@@ -214,6 +214,23 @@ regardless of whether an exception has been thrown or not:
     } finally {
         // the code here will always be executed
     }
+
+---
+
+# "Funny" gotcha
+
+What does this code print?
+
+    !php
+    function foo(): string
+    {
+        try {
+            return 'bar';
+        } finally {
+            return 'baz';
+        }
+    }
+    var_dump(foo()); // ?
 
 ---
 
