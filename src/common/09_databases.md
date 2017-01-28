@@ -4,8 +4,8 @@
 
 # Agenda
 
-* Database Design Patterns
 * Data Access Layer
+* Database Design Patterns
 * Object Relational Mapping
 * Existing Components
 * A Note About Domain-Driven Design
@@ -22,7 +22,141 @@ In our context, a **database** is seen as a server hosting:
 
 ---
 
-# Database Design Patterns
+# Data Access Layer
+
+---
+
+# Data Access Layer / Data Source Name
+
+A **D**ata **A**ccess **L**ayer (DAL) is a standard API to manipulate data,
+no matter which database server is used.
+A **D**ata **S**ource **N**ame (DSN) can be used to determine which database
+vendor you are using.
+
+### PHP Data Object (PDO)
+
+A DSN in PHP looks like: `<database>:host=<host>;dbname=<dbname>` where:
+
+* `<database>` can be: `mysql`, `sqlite`, `pgsql`, etc;
+* `<host>` is the IP address of the database server (e.g. `localhost`);
+* `<dbname>` is your database name.
+
+> [http://www.php.net/manual/en/intro.pdo.php](http://www.php.net/manual/en/intro.pdo.php)
+
+---
+
+# Data Access Layer
+
+### PDO usage
+
+    !php
+    $dsn = 'mysql:host=localhost;dbname=test';
+    // or for postgresql → $dsn = 'pgsql:host=localhost;dbname=test';
+    // or for oracle → $dsn = 'oci:host=localhost;dbname=test';
+
+    $options = [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false,
+    ];
+
+    $con = new PDO($dsn, $user, $password, $options);
+
+    // Prepared statement
+    $stmt = $con->prepare($query);
+    $stmt->execute();
+
+### Advantage
+
+An abstraction that works with any database*
+
+<small>_\* you still need to install the drivers for your database_</small>
+
+---
+
+# Writing queries
+
+    !php
+    /* @var PDOStatement $stmt */
+    $stmt = $conn->prepare('SELECT name FROM users WHERE email = :email');
+    $stmt->execute(['email' => $email]);
+
+    /* @var array $user */
+    while ($user = $stmt->fetch()) {
+        echo $user['name'] . "\n";
+    }
+
+### Advantage
+
+* safe by default: no SQL injection possible if you only use prepared statements
+  and variable placeholders
+
+> Other usage examples can be found here: [https://phpdelusions.net/pdo](https://phpdelusions.net/pdo)
+
+---
+
+# Making our live easier
+
+Let's introduce the following `Connection` class:
+
+    !php
+    class Connection extends PDO
+    {
+    }
+
+### Usage
+
+    !php
+    $con = new Connection($dsn, $user, $password);
+
+---
+
+# Making our live easier
+
+And add an "utility" method:
+
+    !php
+    class Connection extends PDO
+    {
+        /**
+         * @param string $query
+         * @param array  $parameters
+         *
+         * @return bool Returns `true` on success, `false` otherwise
+         */
+        public function executeQuery($query, array $parameters = [])
+        {
+            $stmt = $this->prepare($query);
+
+            return $stmt->execute($parameters);
+        }
+    }
+
+### Usage
+
+    !php
+    $conn->executeQuery('INSERT INTO users (name, email) VALUES (:name, :email)', [
+        ':name' => $name,
+        ':email' => $email,
+    ])
+
+---
+
+# The problem(s)
+
+* How do we manipulate this records from within our application? Do we just *pass
+  around* the `Connection` object?
+* How do we handle database failures?
+* How do we write tests?
+
+→ We need a way to represent in our code the interactions between our
+application and the database.
+
+---
+
+# Design Patterns to the rescue
+
+Database-related Patterns:
 
 * Row Data Gateway
 * Table Data Gateway
@@ -31,11 +165,12 @@ In our context, a **database** is seen as a server hosting:
 * Identity Map
 * etc.
 
-Definitions and figures are part of the [Catalog of Patterns of Enterprise
-Application Architecture](http://martinfowler.com/eaaCatalog/index.html)
-created by **Martin Fowler**.
-
-Don't forget his name! Read his books!
+> Definitions and figures are part of the [Catalog of Patterns of Enterprise
+> Application Architecture](http://martinfowler.com/eaaCatalog/index.html)
+> created by **Martin Fowler**.
+> <br />
+> Don't forget his name! Read [his books](https://www.amazon.fr/Martin-Fowler/e/B000AQ6PGM/)
+> and [blog](https://martinfowler.com/)!
 
 ---
 
@@ -101,21 +236,34 @@ There is one instance per row.
 ### Under the hood
 
     !php
-    public function insert(Connection $con)
+    class Banana
     {
-        // Prepared statement
-        $stmt = $this->con->prepare('INSERT INTO bananas VALUES (:name)');
+        // …
 
-        $stmt->bindValue(':name', $name);
+        public function insert(Connection $con)
+        {
+            // Prepared statement
+            $stmt = $this->con->prepare('INSERT INTO bananas VALUES (:name)');
 
-        $stmt->execute();
+            $stmt->execute([':name' => $this->name]);
 
-        // Set the id for this banana
-        //
-        // It becomes easy to know whether the banana is new or not,
-        // you just need to check if id is defined.
-        $this->id = $this->con->lastInsertId();
+            // Set the id for this banana
+            //
+            // It becomes easy to know whether the banana is new or not,
+            // you just need to check if id is defined.
+            $this->id = $this->con->lastInsertId();
+        }
     }
+
+---
+
+# Row Data Gateway — Summary
+
+* One row = One object
+* Each column is mapped to a class attribute
+* Rows are accessed through *finders*
+* Creation, update and deletion are handled by the row gateway
+* **NO** domain logic in the objects
 
 ---
 
@@ -190,9 +338,7 @@ A DAO implements the well-known **C**reate **R**ead **U**pdate
         // Prepared statement
         $stmt = $this->con->prepare('INSERT INTO bananas VALUES (:name)');
 
-        $stmt->bindValue(':name', $name);
-
-        $stmt->execute();
+        $stmt->execute([':name' => $name]);
 
         return $this->con->lastInsertId();
     }
@@ -219,10 +365,7 @@ A DAO implements the well-known **C**reate **R**ead **U**pdate
     SQL
         );
 
-        $stmt->bindValue(':id', $id);
-        $stmt->bindValue(':name', $name);
-
-        return $stmt->execute();
+        return $stmt->execute([':id' => $id, ':name' => $name]);
     }
 
 ---
@@ -241,9 +384,7 @@ A DAO implements the well-known **C**reate **R**ead **U**pdate
     {
         $stmt = $this->con->prepare('DELETE FROM bananas WHERE id = :id');
 
-        $stmt->bindValue(':id', $id);
-
-        return $stmt->execute();
+        return $stmt->execute([':id' => $id]);
     }
 
 ---
@@ -267,6 +408,15 @@ A DAO implements the well-known **C**reate **R**ead **U**pdate
 
 > Use the `__call()` magic method to create magic finders:
 [http://www.php.net/manual/en/language.oop5.overloading.php#object.call](http://www.php.net/manual/en/language.oop5.overloading.php#object.call).
+
+---
+
+# Table Data Gateway — Summary
+
+* One table = One gateway class
+* CRUD operations are handled by the gateway
+* *Finder* methods directly in the gateway
+* **NO** domain logic in the objects
 
 ---
 
@@ -321,8 +471,7 @@ the database access, and adds domain logic on that data.
 
         public function isNew()
         {
-            // Yoda style
-            return null === $this->id;
+            return $this->id === null;
         }
     }
 
@@ -408,110 +557,6 @@ a map. Looks up objects using the map when referring to them.
 
             return $this->identityMap[$id];
         }
-    }
-
----
-
-# Data Access Layer
-
----
-
-# Data Access Layer / Data Source Name
-
-A **D**ata **A**ccess **L**ayer (DAL) is a standard API to manipulate data,
-no matter which database server is used.
-A **D**ata **S**ource **N**ame (DSN) can be used to determine which database
-vendor you are using.
-
-### PHP Data Object (PDO)
-
-A DSN in PHP looks like: `<database>:host=<host>;dbname=<dbname>` where:
-
-* `<database>` can be: `mysql`, `sqlite`, `pgsql`, etc;
-* `<host>` is the IP address of the database server (e.g. `localhost`);
-* `<dbname>` is your database name.
-
-> [http://www.php.net/manual/en/intro.pdo.php](http://www.php.net/manual/en/intro.pdo.php)
-
----
-
-# Data Access Layer
-
-### PDO usage
-
-    !php
-    $dsn = 'mysql:host=localhost;dbname=test';
-
-    $con = new PDO($dsn, $user, $password);
-
-    // Prepared statement
-    $stmt = $con->prepare($query);
-    $stmt->execute();
-
-Looks like the `Connection` class you used before, right?
-
-    !php
-    class Connection extends PDO
-    {
-    }
-
-### Usage
-
-    !php
-    $con = new Connection($dsn, $user, $password);
-
----
-
-# Data Access Layer
-
-### Refactoring
-
-Refactoring is a disciplined technique for restructuring an existing
-body of code, altering its internal structure without changing its
-external behavior.
-
-    !php
-    class Connection extends PDO
-    {
-        /**
-         * @param string $query
-         * @param array  $parameters
-         *
-         * @return bool Returns `true` on success, `false` otherwise
-         */
-        public function executeQuery($query, array $parameters = [])
-        {
-            $stmt = $this->prepare($query);
-
-            foreach ($parameters as $name => $value) {
-                $stmt->bindValue(':' . $name, $value);
-            }
-
-            return $stmt->execute();
-        }
-    }
-
----
-
-# Data Access Layer
-
-### Usage
-
-    !php
-    /**
-     * @param int    $id   The id of the banana to update
-     * @param string $name The new name of the banana
-     *
-     * @return bool Returns `true` on success, `false` otherwise
-     */
-    public function update($id, $name)
-    {
-        $query = 'UPDATE bananas SET name = :name WHERE id = :id';
-
-        return $this->con->executeQuery($query, [
-            'id'    => $id,
-            'name'  => $name,
-        ]);
     }
 
 ---
