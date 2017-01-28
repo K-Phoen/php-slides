@@ -1,6 +1,9 @@
-.PHONY: publish
+.PHONY: publish watch
 
 build: iut-php.html iut-extended.html isima-php.html
+
+watch:
+	watchmedo shell-command --patterns="*.md" --recursive --command='make build'
 
 iut-php.html: src/me.md src/agenda/iut-php.md src/common/*.md src/iut/*.md
 	landslide iut-php.cfg
