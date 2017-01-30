@@ -40,7 +40,7 @@ Install it using Composer:
     !javascript
     {
         "require-dev": {
-            "phpunit/phpunit": "~3.7"
+            "phpunit/phpunit": "~5.7"
         }
     }
 
