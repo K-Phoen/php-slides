@@ -19,7 +19,7 @@ No **Authentication**/**Security Layer**, anyone can access everything.
 
 ---
 
-# The Interceptor Pattern
+# The Interceptor Pattern
 
 The **Security Layer**, as seen before, has to **intercept** the process of
 converting a request into a response in order to perform some checks.
@@ -63,6 +63,9 @@ Simple event dispatcher using a **trait**:
         }
     }
 
+> For a more complete event dispatcher implementation, see
+> [symfony/event-dispatcher](http://symfony.com/doc/current/components/event_dispatcher.html) component
+
 ---
 
 # Using the EventDispatcherTrait
@@ -94,10 +97,54 @@ The **listeners** have to listen to this event:
 
 ---
 
-# The Firewall (1/2)
+# A simple Firewall
 
 Now that you can hook into the application's lifecycle, you can write a basic
 but powerful **Firewall**.
+
+    !php
+    $app->addListener('process.before', function (Request $request) use ($app) {
+        if ($request->guessBestFormat() !== 'application/json') {
+            return;
+        }
+
+        if (empty($_SERVER['PHP_AUTH_USER'])) {
+            header('WWW-Authenticate: Basic realm="Super secure app"');
+            throw new \Exception\HttpException(401);
+        }
+
+        if ($_SERVER['PHP_AUTH_USER'] !== 'admin'
+         || $_SERVER['PHP_AUTH_PW'] !== 'not-so-secure') {
+            throw new \Exception\HttpException(401);
+        }
+    });
+
+If authentication fails, the server should return a `401` status code.
+
+> This Firewall implements a stateless authentication mecanism: [Basic HTTP
+authentication](http://php.net/manual/en/features.http-auth.php).
+
+---
+
+# Stateless Authentication
+
+Useful for API authentication.
+
+### OpenID (in stateless mode)
+
+[http://openid.net/](http://openid.net/)
+
+### Basic and Digest Access Authentication
+
+[http://pretty-rfc.herokuapp.com/RFC2617](http://pretty-rfc.herokuapp.com/RFC2617)
+
+### WSSE Username Token
+
+[http://www.xml.com/pub/a/2003/12/17/dive.html](http://www.xml.com/pub/a/2003/12/17/dive.html)
+
+---
+
+# Statefull Firewall (1/2)
 
 This firewall needs a **whitelist** of unsecured routes (i.e. routes that
 don't require the user to be authenticated) associated with their allowed HTTP
@@ -114,7 +161,7 @@ Whitelist](http://phpsecurity.readthedocs.org/en/latest/Input-Validation.html#ne
 
 ---
 
-# The Firewall (2/2)
+# Statefull Firewall (2/2)
 
 The **Firewall** leverages the **session** to determine whether the user is
 authenticated or not:
@@ -127,14 +174,16 @@ authenticated or not:
         return;
     }
 
-If authentication fails, the server should return a `401` status code.
-
 ---
 
 # Implementing The Firewall
 
     !php
     $app->addListener('process.before', function(Request $req) use ($app) {
+        if ($req->guessBestFormat() === 'application/json') {
+            return;
+        }
+
         session_start();
 
         $allowed = [
@@ -142,7 +191,7 @@ If authentication fails, the server should return a `401` status code.
         ];
 
         if (isset($_SESSION['is_authenticated'])
-            && true === $_SESSION['is_authenticated']) {
+            && $_SESSION['is_authenticated'] === true) {
             return;
         }
 
@@ -151,11 +200,6 @@ If authentication fails, the server should return a `401` status code.
                 && in_array($req->getMethod(), $methods)) {
                 return;
             }
-        }
-
-        switch ($req->guessBestFormat()) {
-            case 'json':
-                throw new HttpException(401);
         }
 
         return $app->redirect('/login');
@@ -195,27 +239,6 @@ If authentication fails, the server should return a `401` status code.
 
         return $app->redirect('/');
     });
-
-> [UI Terminology: Logon vs
-Login](http://stackoverflow.com/questions/406016/ui-terminology-logon-vs-login).
-
----
-
-# Stateless Authentication
-
-Useful for API authentication.
-
-### OpenID (in stateless mode)
-
-[http://openid.net/](http://openid.net/)
-
-### Basic and Digest Access Authentication
-
-[http://pretty-rfc.herokuapp.com/RFC2617](http://pretty-rfc.herokuapp.com/RFC2617)
-
-### WSSE Username Token
-
-[http://www.xml.com/pub/a/2003/12/17/dive.html](http://www.xml.com/pub/a/2003/12/17/dive.html)
 
 ---
 

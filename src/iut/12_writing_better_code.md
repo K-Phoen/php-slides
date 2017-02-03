@@ -91,7 +91,7 @@ You should think about interfaces, not about internal implementation details.
 
 ---
 
-# Dependency Inversion Principle (DIP)
+# Dependency Inversion Principle (DIP) (1/3)
 
 The **D**ependency **I**nversion **P**rinciple has two parts:
 
@@ -102,6 +102,24 @@ The **D**ependency **I**nversion **P**rinciple has two parts:
 
 DIP is about the level of the abstraction in the messages sent from your code to
 the thing it is calling.
+
+---
+
+# Dependency Inversion Principle (2/3)
+
+In *conventional* architectures, higher level components rely on lower level
+ones.
+
+<br><br>![](../images/dependency_inversion_before.png)
+
+---
+
+# Dependency Inversion Principle (3/3)
+
+![](../images/dependency_inversion.png)
+
+> In a direct application of dependency inversion, the interfaces are owned by
+> the upper/policy layers.
 
 ---
 
@@ -257,6 +275,8 @@ dynamically built:
     // Is it the raw PHP implementation or Twig?
     $engine = $container->get('template_engine');
 
+> [Do you need a dependency injection container?](http://fabien.potencier.org/do-you-need-a-dependency-injection-container.html)
+
 ---
 
 # PHP Implementations
@@ -268,20 +288,15 @@ Container written in PHP.
 It fits in a _tweet_ (less than 140 characters):
 
     !php
-    class Container
-    {
-        protected $s = array();
-
-        function __set($k, $c)
-        {
-            $this->s[$k] = $c;
-        }
-
-        function __get($k)
-        {
-            return $this->s[$k]($this);
-        }
+    class Container {
+        protected $s = [];
+        function __set($k, $c) { $this->s[$k] = $c; }
+        function __get($k) { return $this->s[$k]($this); }
     }
+
+    $c = new Container();
+    $c->mailer_config = ['smtp' => '…', 'port' => 25];
+    $c->mailer = function ($c) { return new Mailer($c->mailer_config); };
 
 ---
 
@@ -302,6 +317,7 @@ application.
 >
 > * [http://symfony.com/doc/current/book/service_container.html](http://symfony.com/doc/current/book/service_container.html);
 > * [http://symfony.com/doc/current/components/dependency_injection/](http://symfony.com/doc/current/components/dependency_injection/).
+> * [[DRAFT] PSR-11 — Container Interface](https://github.com/container-interop/fig-standards/blob/master/proposed/container.md)
 
 ---
 
@@ -337,11 +353,13 @@ Lego!](http://williamdurand.fr/2012/02/01/component-driven-development-it-s-like
 
 # From STUPID to SOLID code! (2/2)
 
-### SOLID
-
 * **S**ingle Responsibility Principle
 * **O**pen/Closed Principle
+    * <small>software entities should be open for extension, but closed for modification</small>
 * **L**iskov Substitution Principle
+    * <small>if S is a subtype of T, then objects of type T may be
+      replaced with objects of type S without altering any of the desirable
+      properties of the application</small>
 * **I**nterface Segregation Principle
 * **D**ependency Inversion Principle
 
@@ -359,7 +377,7 @@ Anthology](http://pragprog.com/book/twa/thoughtworks-anthology):
 2. Don't Use The ELSE Keyword
 3. Wrap All Primitives And Strings
 4. First Class Collections
-5. One Dot Per Line
+5. One Dot Per Line <small>(also known as the [Law of Demeter](https://en.wikipedia.org/wiki/Law_of_Demeter))</small>
 6. Don't Abbreviate
 7. Keep All Entities Small
 8. No Classes With More Than Two Instance Variables
