@@ -45,10 +45,10 @@ dependent services**.
 
 The **service definition** for the class described above is:
 
-    !xml
-    <services>
-        <service id="foo" class="My\Bundle\Foo" />
-    </services>
+    !yaml
+    services:
+        foo:
+            class: My\Bundle\Foo
 
 This service is now available in the container, and you can access it by
 **asking** the service from the container:
@@ -65,23 +65,16 @@ The service definition described before is not flexible enough. For instance,
 
 **Parameters** make defining services more **organized** and **flexible**:
 
-    !xml
-    <parameters>
-        <parameter key="my_bundle.foo.class">My\Bundle\Foo</parameter>
-    </parameters>
-
-    <services>
-        <service id="foo" class="%my_bundle.foo.class%">
-            <argument></argument> <!-- null -->
-            <argument>%kernel.debug%</argument>
-        </service>
-    </services>
+    !yaml
+    services:
+        foo:
+            class: My\Bundle\Foo
+            arguments:
+                - ~ # null
+                - '%kernel.debug%'
 
 In the definition above, `kernel.debug` is a parameter defined by the framework
 itself. The `foo` service is now **parametrized**.
-
-Also, it becomes easy to change the implementation of this service by simply
-overriding the `my_bundle.foo.class` parameter.
 
 ---
 
@@ -91,27 +84,22 @@ As you may noticed, the `Foo` class takes an instance of `Bar` as first
 argument. You can **inject** this instance in your `foo` service by
 **referencing** the `bar` service:
 
-    !xml
-    <parameters>
-        <parameter key="my_bundle.foo.class">My\Bundle\Foo</parameter>
-        <parameter key="my_bundle.bar.class">My\Bundle\Bar</parameter>
-    </parameters>
+    !yaml
+    services:
+        bar:
+            class: My\Bundle\Bar
 
-    <services>
-        <service id="bar" class="%my_bundle.bar.class%" />
-
-        <service id="foo" class="%my_bundle.foo.class%">
-            <argument type="service" id="bar" />
-            <argument>%kernel.debug%</argument>
-        </service>
-    </services>
+        foo:
+            class: My\Bundle\Foo
+            arguments:
+                - '@bar'
+                - '%kernel.debug%'
 
 ### Optional Dependencies: Setter Injection
 
-    !xml
-    <call method="setBar">
-        <argument type="service" id="bar" />
-    </call>
+    !yaml
+    calls:
+        - [setBar, ['@bar']]
 
 ---
 
@@ -122,7 +110,7 @@ argument. You can **inject** this instance in your `foo` service by
     !yaml
     # app/config/config.yml
     imports:
-        - { resource: "@AcmeDemoBundle/Resources/config/services.xml" }
+        - { resource: "@AcmeDemoBundle/Resources/config/services.yml" }
 
 ### Container Extensions
 
@@ -148,17 +136,17 @@ the Bundle class name with `Extension`.
 
     use Symfony\Component\Config\FileLocator;
     use Symfony\Component\DependencyInjection\ContainerBuilder;
-    use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+    use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
     use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
     class AcmeDemoExtension extends Extension
     {
         public function load(array $configs, ContainerBuilder $container)
         {
-            $loader = new XmlFileLoader($container, new FileLocator(
+            $loader = new YamlFileLoader($container, new FileLocator(
                 __DIR__ . '/../Resources/config'
             ));
-            $loader->load('services.xml');
+            $loader->load('services.yml');
         }
     }
 
@@ -263,8 +251,8 @@ The `processConfiguration()` method uses the **configuration tree** you've defin
 in the `Configuration` class to **validate**, **normalize** and **merge** all of
 the configuration arrays together.
 
-> Read more on How to expose a Semantic Configuration for a Bundle:
-[http://symfony.com/doc/master/cookbook/bundles/extension.html](http://symfony.com/doc/master/cookbook/bundles/extension.html).
+> How to Create Friendly Configuration for a Bundle:
+[https://symfony.com/doc/master/bundles/configuration.html](https://symfony.com/doc/master/bundles/configuration.html).
 
 ---
 
@@ -275,10 +263,12 @@ the configuration arrays together.
 In the service container, a **tag** implies that the service is meant to be used
 for a specific purpose.
 
-    !xml
-    <service id="my_bundle.twig.foo" class="My\Bundle\Twig\FooExtension">
-        <tag name="twig.extension" />
-    </service>
+    !yaml
+    services:
+        my_bundle.twig.foo:
+            class: My\Bundle\Twig\FooExtension
+            tags:
+                - { name: twig.extension }
 
 Twig finds all services tagged with `twig.extension` and automatically registers
 them as extensions.
