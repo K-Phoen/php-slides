@@ -1,4 +1,4 @@
-# ![](../images/symfony.png)
+![](../images/symfony.png)
 
 .fx: no-border
 
@@ -44,7 +44,7 @@ Symfony is built on powerful concepts:
 
 ![](../images/symfony-github.png)
 
-It has been written by [~1502 developers](http://symfony.com/contributors/code).
+It has been written by [~1679 developers](http://symfony.com/contributors/code).
 
 Open Source, **MIT** licensed.
 
@@ -58,7 +58,7 @@ They are the **foundation of the Symfony full-stack framework**, but they can
 also be used **standalone** even if you don't use the framework as they don't
 have any mandatory dependencies.
 
-There are ~30 components, including:
+There are ~50 components, including:
 
     !text
 	BrowserKit              EventDispatcher     OptionsResolver     Templating
@@ -70,6 +70,8 @@ There are ~30 components, including:
 	DependencyInjection     HttpKernel          Serializer
 	DomCrawler              Intl                Stopwatch
 
+> [https://symfony.com/components](https://symfony.com/components)
+
 ---
 
 # Getting Ready With Components
@@ -80,7 +82,7 @@ component into your `composer.json` file:
     !yaml
     {
         "require": {
-            "symfony/yaml": "~3.0"
+            "symfony/yaml": "^3.0"
         }
     }
 
@@ -233,7 +235,8 @@ specific PHP method named `helloAction()` inside a class called
 In Symfony, a method in a controller is called an **action**. The convention is
 to suffix each method with `Action`.
 
-Also, each controller should be suffixed with `Controller`.
+Also, each controller should be suffixed with `Controller` and placed in a
+`Controller` namespace.
 
     !php
     // src/AppBundle/Controller/MainController.php
@@ -284,7 +287,7 @@ Also, each controller should be suffixed with `Controller`.
 Each directory has its own purpose (and set of files):
 
 * `app/` contains the application kernel, views, and the configuration;
-* `src/` contains your **bundles**;
+* `src/` contains your **code** and **bundles**;
 * `tests/` contains your tests;
 * `var/` contains files that change often (like in Unix systems);
 * `vendor/` contains your dependencies;
@@ -431,13 +434,12 @@ The **routing definition** MUST be written in `YAML`:
         path:  /hello
         defaults: { _controller: AppBundle:Main:hello }
 
-The **DI Container configuration** MUST be written in `XML`:
+The **DI Container configuration** MUST be written in `YAML`:
 
-    !xml
-    <services>
-        <service id="acme_demo.controllers.main"
-            class="AppBundle\MainController" />
-    </services>
+    !yaml
+    services:
+        acme_demo.controllers.main:
+            class: AppBundle\Controller\MainController
 
 ---
 
@@ -452,7 +454,7 @@ A Symfony project generally uses three environments: `dev`, `test` and `prod`.
     // web/app.php
 
     // ...
-    $kernel = new AppKernel('prod', false);
+    $kernel = new AppKernel('prod', /* $debug = */ false);
 
 The `AppKernel` class is responsible for actually loading the configuration file
 of your choice:
@@ -483,11 +485,11 @@ In order to use a bundle in your application, you need to register it in the
     !php
     public function registerBundles()
     {
-        $bundles = array(
+        $bundles = [
             // ...
 
             new My\AwesomeBundle\MyAwesomeBundle(),
-        );
+        ];
 
         // ...
     }
@@ -506,7 +508,7 @@ Recommended structure for a bundle:
             Resources/
                 config/
                 doc/
-                    index.rst
+                    index.md
                 translations/
                 views/
                 public/
@@ -514,7 +516,7 @@ Recommended structure for a bundle:
 			LICENSE
 
 The `DemoBundle` class is mandatory, and both `LICENSE` and
-`Resources/doc/index.rst` files should be present.
+`Resources/doc/index.md` files should be present.
 
 The `XXX` directory(ies) reflects the namespace structure of the bundle.
 
@@ -547,7 +549,7 @@ The `XXX` directory(ies) reflects the namespace structure of the bundle.
             <td><tt><code>DependencyInjection/</code></tt></td>
         </tr>
         <tr>
-            <td>Event Listeners</td>
+            <td>Event Listeners/Subscribers</td>
             <td><tt><code>EventListener/</code></tt></td>
         </tr>
         <tr>
@@ -596,9 +598,9 @@ Then, you can register your bundle:
     // app/AppKernel.php
     public function registerBundles()
     {
-        $bundles = array(
+        $bundles = [
             new Acme\MyFirstBundle\AcmeMyFirstBundle(),
-        );
+        ];
 
         return $bundles;
     }

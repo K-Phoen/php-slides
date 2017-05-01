@@ -9,10 +9,9 @@ complying with standard development rules.
 Compliance with development standards also simplifies integrating and
 interfacing the application with the rest of the information system.
 
-In other words, it works as a tool to make the development process
+In other words, it works as a **tool** to make the development process
 easier and more productive.
 
 Most of the time, a framework implements many kinds of **design patterns**.
 
-> Read more: [Symfony explained to a
-> Developer](https://symfony.com/symfony-explained-to-a-developer).
+> Read more: [Symfony explained to a Developer](https://symfony.com/explained-to-a-developer).

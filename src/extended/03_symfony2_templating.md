@@ -289,18 +289,18 @@ overridden by copying each from the `Resources/views/` directory of the
     {
         // ...
 
-        return $this->render('blog/index.html.twig', array(
+        return $this->render('blog/index.html.twig', [
             'posts' => $posts,
-        ));
+        ]);
     }
 
 ### Using the Templating Service
 
     !php
     $engine  = $this->container->get('templating');
-    $content = $engine->render('blog/index.html.twig', array(
+    $content = $engine->render('blog/index.html.twig', [
         'posts' => $posts,
-    ));
+    ]);
 
     return new Response($content);
 

@@ -137,15 +137,15 @@ it might need:
 ### Redirecting
 
     !php
-    $this->redirect($this->generateUrl('homepage'));
+    $this->redirect($this->generateUrl('homepage')); // see also: redirectToRoute
 
 
 ### Rendering Templates
 
     !php
-    return $this->render(
-        'hello/hello.html.twig', array('name' => $name)
-    );
+    return $this->render('hello/hello.html.twig', [
+        'name' => $name
+    ]);
 
 ---
 
@@ -163,7 +163,7 @@ Create a simple `Response` with a `200` status code:
 Create a JSON response with a `200` status code:
 
     !php
-    $response = new Response(json_encode(array('name' => $name)));
+    $response = new Response(json_encode(['name' => $name]));
     $response->headers->set('Content-Type', 'application/json');
 
 Or:
@@ -171,7 +171,7 @@ Or:
     !php
     use Symfony\Component\HttpFoundation\JsonResponse;
 
-    $response = new JsonResponse(array('name' => $name));
+    $response = new JsonResponse(['name' => $name]);
 
 ---
 
@@ -191,7 +191,7 @@ maps a `path` to a `_controller`:
     # app/config/routing.yml
     homepage:
         path:  /
-        defaults: { _controller: AppBundle:Hello:index }
+        defaults: { _controller: 'AppBundle:Hello:index' }
 
 This route matches the homepage (`/`) and maps it to the
 `AppBundle:Hello:index` controller.
@@ -207,7 +207,7 @@ This route matches the homepage (`/`) and maps it to the
     !yaml
     blog:
         path:      /blog/{page}
-        defaults:  { _controller: AcmeBlogBundle:Blog:index }
+        defaults:  { _controller: 'AcmeBlogBundle:Blog:index' }
 
 The path will match anything that looks like `/blog/*`.
 
@@ -225,7 +225,9 @@ inside your controller.
     !yaml
     blog:
         path:      /blog/{page}
-        defaults:  { _controller: AcmeBlogBundle:Blog:index, page: 1 }
+        defaults:
+            _controller: 'AcmeBlogBundle:Blog:index'
+            page: 1
 
 By adding `page` to the **defaults** key, `{page}` is **no longer required**.
 
@@ -239,7 +241,9 @@ set to `1`. `/blog/2` will also match, giving the `page` parameter a value of `2
     !yaml
     blog:
         path:      /blog/{page}
-        defaults:  { _controller: AcmeBlogBundle:Blog:index, page: 1 }
+        defaults:
+            _controller: 'AcmeBlogBundle:Blog:index'
+            page: 1
         requirements:
             page:  \d+
 
@@ -252,7 +256,7 @@ the `{page}` parameter must be a digit (i.e. a number).
     # src/AppBundle/Resources/config/routing.yml
     app.hello_hello:
         path:  /hello/{name}
-        defaults: { _controller: AppBundle:Hello:hello }
+        defaults: { _controller: 'AppBundle:Hello:hello' }
         methods:  [ GET ]
         # methods:  [ GET, POST ]
 
@@ -268,7 +272,7 @@ located in the bundle itself, and you should just require it:
 
     !yaml
     # app/config/routing.yml
-    appa:
+    app:
         resource: '@AppBundle/Resources/config/routing.yml'
 
 

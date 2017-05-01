@@ -1,5 +1,6 @@
 # Agenda
 
+* Security (TODO)
 * Symfony
     * Controllers
     * Templating
@@ -9,5 +10,3 @@
     * Validation
     * Translation
     * HTTP Cache
-* Stack PHP
-* Hack
