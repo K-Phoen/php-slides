@@ -100,7 +100,7 @@ To translate pluralized messages, use the `transChoice()` method:
     $t = $this->get('translator')->transChoice(
         'There is one apple|There are %count% apples',
         10,
-        array('%count%' => 10)
+        ['%count%' => 10]
     );
 
 The second argument (`10` in this example), is the **number of objects being
