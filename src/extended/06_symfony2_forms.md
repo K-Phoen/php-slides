@@ -5,12 +5,14 @@
 # Building Your First Form
 
     !php
+    use Symfony\Component\Form\Extension\Core\Type as Form;
+
     public function newAction(Request $request)
     {
         $form = $this->createFormBuilder()
-            ->add('name')
-            ->add('bio', 'textarea')
-            ->add('birthday', 'date')
+            ->add('name', Form\TextType::class)
+            ->add('bio', Form\TextareaType::class)
+            ->add('birthday', Form\DateType::class);
             ->getForm();
 
         return $this->render('default/new.html.twig', [
@@ -59,19 +61,21 @@ being able to hit "refresh" and re-post the data.
 # Handling Form Submissions
 
     !php
+    use Symfony\Component\Form\Extension\Core\Type as Form;
+
     public function newAction(Request $request)
     {
         $form = $this->createFormBuilder()
-            ->add('name')
-            ->add('bio', 'textarea')
-            ->add('birthday', 'date')
+            ->add('name', Form\TextType::class)
+            ->add('bio', Form\TextareaType::class)
+            ->add('birthday', Form\DateType::class);
             ->getForm();
 
         if ($form->handleRequest($request)->isValid()) {
             $data = $form->getData();
             // do something ...
 
-            return $this->redirect($this->generateUrl('success'));
+            return $this->redirectToRoute('success');
         }
 
         // ...
@@ -93,15 +97,16 @@ Everything is a **Type**!
     use Symfony\Component\Form\AbstractType;
     use Symfony\Component\Form\FormBuilderInterface;
     use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+    use Symfony\Component\Form\Extension\Core\Type as Form;
 
     class PersonType extends AbstractType
     {
         public function buildForm(FormBuilderInterface $builder, array $options)
         {
             $builder
-                ->add('name')
-                ->add('bio', 'textarea')
-                ->add('birthday', 'date');
+                ->add('name', Form\TextType::class)
+                ->add('bio', Form\TextareaType::class)
+                ->add('birthday', Form\DateType::class);
         }
 
         public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -109,11 +114,6 @@ Everything is a **Type**!
             $resolver->setDefaults([
                 'data_class' => My\Person::class,
             ]);
-        }
-
-        public function getName()
-        {
-            return 'person';
         }
     }
 
@@ -125,12 +125,12 @@ Everything is a **Type**!
     public function newAction(Request $request)
     {
         $person = new Person();
-        $form   = $this->createForm(PersonType::class, $person);
+        $form = $this->createForm(PersonType::class, $person);
 
         if ($form->handleRequest($request)->isValid()) {
             $person->save(); // insert a new `person`
 
-            return $this->redirect($this->generateUrl('success'));
+            return $this->redirectToRoute('success');
         }
 
         // ...
@@ -174,9 +174,6 @@ the `newAction()` and the `updateAction()`:
 
     !php
     /**
-     * @param Request $request
-     * @param Person  $person
-     *
      * @return Response
      */
     private function processForm(Request $request, Person $person)
@@ -232,7 +229,7 @@ un-rendered fields are output.
     </form>
 
 > Read more:
-[http://symfony.com/doc/master/book/forms.html#rendering-a-form-in-a-template](http://symfony.com/doc/master/book/forms.html#rendering-a-form-in-a-template).
+[https://symfony.com/doc/master/form/rendering.html](https://symfony.com/doc/master/form/rendering.html).
 
 ---
 
