@@ -4,6 +4,10 @@ PHP
 PHP lectures by [William Durand](http://github.com/willdurand), adapted by [Kévin
 Gomez](https://github.com/K-Phoen/).
 
+Hosted versions:
+* [PHP](http://blog.kevingomez.fr/php-slides/)
+* [Symfony](http://blog.kevingomez.fr/php-slides/extended.html)
+
 
 Installation
 ------------
