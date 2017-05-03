@@ -96,7 +96,7 @@ Everything is a **Type**!
     !php
     use Symfony\Component\Form\AbstractType;
     use Symfony\Component\Form\FormBuilderInterface;
-    use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+    use Symfony\Component\OptionsResolver\OptionsResolver;
     use Symfony\Component\Form\Extension\Core\Type as Form;
 
     class PersonType extends AbstractType
@@ -109,7 +109,7 @@ Everything is a **Type**!
                 ->add('birthday', Form\DateType::class);
         }
 
-        public function setDefaultOptions(OptionsResolverInterface $resolver)
+        public function configureOptions(OptionsResolver $resolver)
         {
             $resolver->setDefaults([
                 'data_class' => My\Person::class,

@@ -117,17 +117,16 @@ allows you to add a constraint to any public method whose name starts with
     !yaml
     # src/AppBundle/Resources/config/validation.yml
     AppBundle\Entity\Author:
-        getters:
-            passwordLegal:
-                - "False":
-                    message: "The password cannot match your first name"
+      getters:
+        passwordLegal:
+          - 'IsTrue': { message: 'The password cannot match your first name' }
 
 With the following code in the `Author` class:
 
     !php
     public function isPasswordLegal()
     {
-        return ($this->firstName !== $this->password);
+        return $this->firstName !== $this->password;
     }
 
 ---
@@ -185,12 +184,12 @@ which validation group(s) your form should use:
         ->add(...);
 
 If you're creating **form classes**, then you'll need to add the following to
-the `setDefaultOptions()` method:
+the `configureOptions()` method:
 
     !php
-    use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+    use Symfony\Component\OptionsResolver\OptionsResolver;
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'validation_groups' => [ 'registration' ],
