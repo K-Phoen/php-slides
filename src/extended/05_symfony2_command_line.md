@@ -36,24 +36,27 @@ You can suppress output:
     !text
     assets
       assets:install          Installs bundles web assets under a public
-                              web directory
+
     cache
       cache:clear             Clears the cache
       cache:warmup            Warms up an empty cache
+
     config
       config:dump-reference   Dumps default configuration for an extension
-    container
-      container:debug         Displays current services for an application
+
     debug
       debug:container         Displays current services for an application
+      debug:event-dispatcher  Displays configured listeners for an application
       debug:router            Displays current routes for an application
+                              web directory
+      debug:twig              Shows a list of twig functions, filters, […]
+
     router
-      router:match            Helps debug routes by simulating a path info
-                              match
+      router:match            Helps debug routes by simulating a path info match
+
     server
       server:run              Runs PHP built-in web server
-    translation
-      translation:update      Updates the translation file
+
     lint
       lint:twig               Lints a template and outputs encountered
                               errors
@@ -80,10 +83,8 @@ with `Command.php` for each command that you want to provide:
             $this->setName('demo:greet');
         }
 
-        protected function execute(
-            InputInterface $input,
-            OutputInterface $output
-        ) {
+        protected function execute(InputInterface $input, OutputInterface $output)
+        {
             // code ...
         }
     }
@@ -115,6 +116,7 @@ name itself. They are ordered, and can be **optional** or **required**.
 ### Usage
 
     !php
+    // php bin/console demo:greet Kévin Gomez
     $input->getArgument('last_name');
 
 ---
@@ -179,10 +181,8 @@ setup to accept a value or simply as a boolean flag without a value.
 ### Getting Services from the Service Container
 
     !php
-    protected function execute(
-        InputInterface $input,
-        OutputInterface $output
-    ) {
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
         $translator = $this->getContainer()->get('translator');
         // ...
     }
@@ -190,12 +190,12 @@ setup to accept a value or simply as a boolean flag without a value.
 ### Calling an existing Command
 
     !php
-    $command   = $this->getApplication()->find('demo:greet');
-    $arguments = array(
+    $command = $this->getApplication()->find('demo:greet');
+    $arguments = [
         'command' => 'demo:greet',
         'name'    => 'Fabien',
         'yell'    => true,
-    );
+    ];
 
     $returnCode = $command->run(new ArrayInput($arguments), $output);
 
