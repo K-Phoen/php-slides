@@ -1,6 +1,6 @@
 .PHONY: publish watch
 
-build: iut-php.html iut-extended.html isima-php.html
+build: iut-php.html iut-extended.html
 
 build-pdf: iut-php.pdf
 
@@ -15,9 +15,6 @@ iut-php.pdf: iut-php.html
 
 iut-extended.html: src/me.md src/agenda/iut-extended.md src/common/*.md src/extended/*.md
 	landslide iut-extended.cfg
-
-isima-php.html: src/me.md src/agenda/isima-php.md src/common/*.md src/isima/*.md
-	landslide isima-php.cfg
 
 clean:
 	rm *.html
