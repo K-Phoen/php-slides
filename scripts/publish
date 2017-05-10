@@ -2,26 +2,32 @@
 
 TMP_DIR=/tmp/licpro-php-slides
 
+echo '→ Stashing modified/untracked files'
 git stash -u
 
+echo '→ Building slides'
 make build
 
+echo '→ Preparing publication'
 rm -rf $TMP_DIR
 mkdir $TMP_DIR
 mv iut-php.html $TMP_DIR/index.html
 mv iut-extended.html $TMP_DIR/extended.html
 cp -R themes/ $TMP_DIR
 
+echo '→ Switching back to gh-pages'
 git checkout gh-pages
 
 mv $TMP_DIR/* .
 git add *.html themes/avalanche/avalanche/
 git commit -m "Publish slides (`date`)"
 
+echo '→ Pushing'
 git push origin gh-pages -f
 
 git clean -fdx
 
+echo '→ Switching back to master'
 git checkout master
 
 git stash apply
