@@ -46,7 +46,7 @@ blockquote:before {
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
-    line-height: 1.5em;
+    /*line-height: 1.5em;*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     content: "\f02d";
@@ -84,7 +84,7 @@ blockquote.info:before {
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
-    line-height: 1.5em;
+    /*line-height: 1.5em;*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin-right: 10px;
@@ -103,7 +103,7 @@ blockquote.quote:after {
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
-    line-height: 1.5em;
+    /*line-height: 1.5em;*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     content: "\f10e";

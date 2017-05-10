@@ -1,9 +1,3 @@
-![](../images/symfony.png)
-
-.fx: no-border
-
----
-
 # What Is Symfony?
 
 First of all:

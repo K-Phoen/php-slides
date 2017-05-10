@@ -1,6 +1,6 @@
 # Agenda
 
-* Security (TODO)
+* Security basics
 * Symfony
     * Controllers
     * Templating
