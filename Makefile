@@ -19,5 +19,5 @@ iut-extended.html: src/me.md src/agenda/iut-extended.md src/common/*.md src/exte
 clean:
 	rm *.html
 
-publish: build
+publish:
 	./scripts/publish
