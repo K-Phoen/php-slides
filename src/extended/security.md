@@ -18,11 +18,11 @@
 3. Cross-Site Scripting (XSS)
 4. Broken Access Control
 5. Security Misconfiguration
-6. Sensitive Data Exposure
-7. Insufficient Attack Protection (NEW)
+6. Sensitive Data Exposure <small>← won't be covered here</small>
+7. Insufficient Attack Protection <small>← won't be covered here</small>
 8. Cross-Site Request Forgery (CSRF)
 9. Using Components with Known Vulnerabilities
-10. Underprotected APIs (NEW)
+10. Underprotected APIs <small>← won't be covered here</small>
 
 > [https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project<Paste>)
 
@@ -164,7 +164,7 @@ Unsafe input is **dynamically executed**:
 
 ---
 
-## In A Nutshell
+# In A Nutshell
 
 * The most prevalent web application security flaw!
 * When an **application includes user supplied data** in a page sent to the browser **without properly validating or escaping that content**;
