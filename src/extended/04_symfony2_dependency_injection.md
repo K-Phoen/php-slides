@@ -2,7 +2,7 @@
 
 ---
 
-# What Is A Service?
+## What Is A Service?
 
 A **Service** is a generic term for any PHP object that performs a specific task.
 
@@ -17,7 +17,7 @@ An application that has many decoupled services is said to follow a
 
 ---
 
-# What Is A Service Container?
+## What Is A Service Container?
 
 A **Service Container**, also known as a **Dependency Injection Container**
 (DIC), is a special object that **manages the instantiation of services** inside
@@ -28,7 +28,7 @@ dependent services**.
 
 ---
 
-# Creating A Service
+## Creating A Service
 
     !php
     class Foo
@@ -58,7 +58,7 @@ This service is now available in the container, and you can access it by
 
 ---
 
-# Service Parameters
+## Service Parameters
 
 The service definition described before is not flexible enough. For instance,
 `$debug` argument is never configured.
@@ -78,7 +78,7 @@ itself. The `foo` service is now **parametrized**.
 
 ---
 
-# Injecting Services
+## Injecting Services
 
 As you may noticed, the `Foo` class takes an instance of `Bar` as first
 argument. You can **inject** this instance in your `foo` service by
@@ -103,7 +103,7 @@ argument. You can **inject** this instance in your `foo` service by
 
 ---
 
-# Importing Configuration Resources
+## Importing Configuration Resources
 
 ### The `imports` Way
 
@@ -124,7 +124,7 @@ A **service container extension** is a PHP class to accomplish two things:
 
 ---
 
-# Creating an Extension Class
+## Creating an Extension Class
 
 An extension class should live in the `DependencyInjection` directory of your
 bundle and its name should be constructed by replacing the `Bundle` suffix of
@@ -152,7 +152,7 @@ the Bundle class name with `Extension`.
 
 ---
 
-# Dealing With Configuration (1/2)
+## Dealing With Configuration (1/2)
 
 The presence of the previous class means that you can now define an
 `acme_demo` configuration namespace in any configuration file:
@@ -180,7 +180,7 @@ The array passed to your `load()` method will look like this:
 
 ---
 
-# Dealing With Configuration (2/2)
+## Dealing With Configuration (2/2)
 
 The `$configs` argument is an **array of arrays**, not just a single flat array
 of the configuration values.
@@ -204,7 +204,7 @@ somehow merge them together:
 
 ---
 
-# The Configuration Class (1/2)
+## The Configuration Class (1/2)
 
 ### Definition
 
@@ -233,7 +233,7 @@ somehow merge them together:
 
 ---
 
-# The Configuration Class (2/2)
+## The Configuration Class (2/2)
 
 ### Usage
 
@@ -256,7 +256,7 @@ the configuration arrays together.
 
 ---
 
-# More On The Service Container
+## More On The Service Container
 
 ### Tags
 

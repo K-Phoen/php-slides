@@ -2,7 +2,7 @@
 
 ---
 
-# Definitions
+## Definitions
 
 ### Internationalization
 
@@ -20,7 +20,7 @@ service to a particular language**, **culture**, and desired local
 
 ---
 
-# Using the `translator` Service
+## Using the `translator` Service
 
     !yaml
     # messages.fr.yml
@@ -48,7 +48,7 @@ the message will be translated into `J'aime Symfony`.
 
 ---
 
-# The Translation Process
+## The Translation Process
 
 To translate the message, Symfony uses a simple process:
 
@@ -68,7 +68,7 @@ appropriate message catalog and returns it (if it exists).
 
 ---
 
-# Locations and Naming Conventions
+## Locations and Naming Conventions
 
 Symfony looks for message files (i.e. translations) in the following locations:
 
@@ -86,7 +86,7 @@ according to the following path: `domain.locale.loader`:
 
 ---
 
-# Pluralization
+## Pluralization
 
 When a translation has different forms due to pluralization, you can provide all
 the forms as a string separated by a pipe (`|`):
@@ -109,7 +109,7 @@ populate the `%count%` placeholder.
 
 ---
 
-# Explicit Interval Pluralization
+## Explicit Interval Pluralization
 
 Sometimes, you'll need more control or want a different translation for specific
 cases (for 0, or when the count is negative, for example). For such cases, you
@@ -135,7 +135,7 @@ Or numbers between two other numbers:
 
 ---
 
-# BazingaJsTranslationBundle
+## BazingaJsTranslationBundle
 
     !yaml
     # app/Resources/translations/Hello.fr.yml

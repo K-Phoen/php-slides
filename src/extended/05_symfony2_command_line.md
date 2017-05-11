@@ -2,7 +2,7 @@
 
 ---
 
-# Built-in Commands (1/2)
+## Built-in Commands (1/2)
 
     !bash
     $ php bin/console
@@ -31,7 +31,7 @@ You can suppress output:
 
 ---
 
-# Built-in Commands (2/2)
+## Built-in Commands (2/2)
 
     !text
     assets
@@ -63,7 +63,7 @@ You can suppress output:
 
 ---
 
-# Creating Commands
+## Creating Commands
 
 Create a `Command` directory inside your bundle and create a php file suffixed
 with `Command.php` for each command that you want to provide:
@@ -91,7 +91,7 @@ with `Command.php` for each command that you want to provide:
 
 ---
 
-# Command Arguments
+## Command Arguments
 
 **Arguments** are the strings, separated by spaces, that come after the command
 name itself. They are ordered, and can be **optional** or **required**.
@@ -121,7 +121,7 @@ name itself. They are ordered, and can be **optional** or **required**.
 
 ---
 
-# Command Options (1/2)
+## Command Options (1/2)
 
 Unlike arguments, **options are not ordered**, **always optional**, and can be
 setup to accept a value or simply as a boolean flag without a value.
@@ -150,7 +150,7 @@ setup to accept a value or simply as a boolean flag without a value.
 
 ---
 
-# Command Options (2/2)
+## Command Options (2/2)
 
     !php
     protected function configure()
@@ -176,7 +176,7 @@ setup to accept a value or simply as a boolean flag without a value.
 
 ---
 
-# More On Commands
+## More On Commands
 
 ### Getting Services from the Service Container
 

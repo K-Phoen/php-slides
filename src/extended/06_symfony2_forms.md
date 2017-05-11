@@ -2,7 +2,7 @@
 
 ---
 
-# Building Your First Form
+## Building Your First Form
 
     !php
     use Symfony\Component\Form\Extension\Core\Type as Form;
@@ -25,7 +25,7 @@ View layer. It's achieved through the `createView()` method.
 
 ---
 
-# Rendering The Form
+## Rendering The Form
 
 ![](../images/sf2_simple_form.png)
 <br />
@@ -40,7 +40,7 @@ View layer. It's achieved through the `createView()` method.
 
 ---
 
-# Handling Forms: The Right Way
+## Handling Forms: The Right Way
 
 1. When initially loading the page in a browser, the **request method is GET**
 and **the form is simply created and rendered**;
@@ -83,7 +83,7 @@ being able to hit "refresh" and re-post the data.
 
 ---
 
-# Built-in Form Types
+## Built-in Form Types
 
 Everything is a **Type**!
 
@@ -91,7 +91,7 @@ Everything is a **Type**!
 
 ---
 
-# Creating A Custom Type (Form Class)
+## Creating A Custom Type (Form Class)
 
     !php
     use Symfony\Component\Form\AbstractType;
@@ -119,7 +119,7 @@ Everything is a **Type**!
 
 ---
 
-# Dealing With Objects
+## Dealing With Objects
 
     !php
     public function newAction(Request $request)
@@ -143,7 +143,7 @@ This is the **best way to create forms**, but the choice is up to you!
 
 ---
 
-# The `processForm()` Method (1/2)
+## The `processForm()` Method (1/2)
 
 Saving or updating an object is pretty much the same thing. In order to avoid
 code duplication, you can use a `processForm()` method that can be used in both
@@ -170,7 +170,7 @@ the `newAction()` and the `updateAction()`:
 
 ---
 
-# The `processForm()` Method (2/2)
+## The `processForm()` Method (2/2)
 
     !php
     /**
@@ -193,7 +193,7 @@ the `newAction()` and the `updateAction()`:
 
 ---
 
-# Cross-Site Request Forgery Protection
+## Cross-Site Request Forgery Protection
 
 CSRF is a method by which a malicious user attempts to make your legitimate
 users unknowingly **submit data that they don't intend to submit**. Fortunately,
@@ -211,7 +211,7 @@ un-rendered fields are output.
 
 ---
 
-# Rendering a Form in a Template (1/2)
+## Rendering a Form in a Template (1/2)
 
     !jinja
     <form action="" method="post" {{ form_enctype(form) }}>
@@ -233,7 +233,7 @@ un-rendered fields are output.
 
 ---
 
-# Rendering a Form in a Template (2/2)
+## Rendering a Form in a Template (2/2)
 
 * `form_enctype(form)`: if at least one field is a file upload field, this renders
   the obligatory `enctype="multipart/form-data"`;

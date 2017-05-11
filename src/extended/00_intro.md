@@ -3,7 +3,7 @@
 .fx: no-border
 
 ---
-# A Framework To Simplify Developments
+## A Framework To Simplify Developments
 
 A **framework helps you work better** by structuring developments,
 and **faster** by reusing generic modules.

@@ -2,7 +2,7 @@
 
 ---
 
-# HTTP Cache
+## HTTP Cache
 
 The nature of rich web applications means that they're dynamic. No matter how
 efficient your application, **each request will always contain more overhead
@@ -15,7 +15,7 @@ This is exactly what **caching** aims to accomplish!
 
 ---
 
-# Terminology (1/2)
+## Terminology (1/2)
 
 ### Gateway Cache
 
@@ -37,7 +37,7 @@ with the cache headers.
 
 ---
 
-# Terminology (2/2)
+## Terminology (2/2)
 
 ### HTTP Expiration
 
@@ -53,7 +53,7 @@ an entire page for 60 minutes, but an embedded sidebar for only 5 minutes.
 
 ---
 
-# Caching with a Gateway Cache
+## Caching with a Gateway Cache
 
 When caching with HTTP, the **cache is separated from your application** entirely
 and sits **between your application and the client** making the request.
@@ -75,7 +75,7 @@ proxy**.
 
 ---
 
-# Types of Caches
+## Types of Caches
 
 The HTTP cache headers sent by your application are consumed and interpreted by
 up to three different types of caches:
@@ -103,7 +103,7 @@ HTTP specifies four response cache headers that are looked at here:
 
 ---
 
-# Public vs Private Responses
+## Public vs Private Responses
 
 Both **gateway and proxy caches are considered shared caches** as the cached
 content is shared by more than one user.
@@ -122,7 +122,7 @@ a single user and must not be cached by a shared cache.
 
 ---
 
-# Safe Methods
+## Safe Methods
 
 **HTTP caching only works for safe HTTP methods** (like `GET` and `HEAD`). Being
 safe means that **you never change the application's state on the server when
@@ -140,7 +140,7 @@ would prevent certain requests from hitting and mutating your application.
 
 ---
 
-# Expiration
+## Expiration
 
 The expiration model is the more efficient and straightforward of the two
 caching models and should be used whenever possible.
@@ -155,7 +155,7 @@ The expiration model can be accomplished using one of two HTTP headers:
 
 ---
 
-# The Cache-Control Header (1/2)
+## The Cache-Control Header (1/2)
 
 The `Cache-Control` header is **unique** in that it contains not one, but
 various pieces of information about the cacheability of a response.
@@ -168,7 +168,7 @@ Each piece of information is separated by a comma:
 
 ---
 
-# The Cache-Control Header (2/2)
+## The Cache-Control Header (2/2)
 
 Symfony provides an **abstraction** around the `Cache-Control` header:
 
@@ -190,7 +190,7 @@ Symfony provides an **abstraction** around the `Cache-Control` header:
 
 ---
 
-# The Expires Header
+## The Expires Header
 
 The `Expires` header can be set with the `setExpires()` Response method. It takes
 a `DateTime` instance as an argument:
@@ -211,7 +211,7 @@ required by the specification.
 
 ---
 
-# Validation
+## Validation
 
 With the expiration model, the application won't be asked to return the updated
 response until the cache finally becomes stale. It is not good!
@@ -227,7 +227,7 @@ and no content. This tells the cache that it's ok to return the cached response.
 
 ---
 
-# The ETag Header
+## The ETag Header
 
 The `ETag` header is a **string header** called **entity-tag** that uniquely
 **identifies one representation of the target resource**. It's entirely
@@ -253,7 +253,7 @@ the `Response` status code to `304 Not Modified`.
 
 ---
 
-# The Last-Modified Header (1/2)
+## The Last-Modified Header (1/2)
 
 According to the HTTP specification, _the Last-Modified header field indicates
 the date and time at which the origin server believes the representation was
@@ -265,7 +265,7 @@ cached.
 
 ---
 
-# The Last-Modified Header (2/2)
+## The Last-Modified Header (2/2)
 
     !php
     public function showAction($articleSlug)
@@ -293,7 +293,7 @@ cached.
 
 ---
 
-# Edge Side Includes (ESI)
+## Edge Side Includes (ESI)
 
 **E**dge **S**ide **I**ncludes or ESI is a **small markup language** for dynamic
 web content assembly at the reverse proxy level. The reverse proxy analyses the

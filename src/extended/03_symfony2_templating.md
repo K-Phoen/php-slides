@@ -8,7 +8,7 @@
 
 ---
 
-# Why Twig?
+## Why Twig?
 
 **Fast**, **Secure**, **Flexible**.
 
@@ -36,7 +36,7 @@
 
 ---
 
-# Getting Familiar With Twig
+## Getting Familiar With Twig
 
 ### Delimiters
 
@@ -49,7 +49,7 @@
 
 ---
 
-# Accessing Variables
+## Accessing Variables
 
     !jinja
     {# array('name' => 'Fabien') #}
@@ -74,7 +74,7 @@
 
 ---
 
-# Control Structure
+## Control Structure
 
 ### Conditions
 
@@ -100,7 +100,7 @@
 
 ---
 
-# Filters
+## Filters
 
 Filters are used to modify Twig variables.
 
@@ -126,7 +126,7 @@ Filters can be parametrized:
 
 ---
 
-# Including Other Templates
+## Including Other Templates
 
 The `include` tag is useful to include a template and return the rendered
 content of that template into the current one:
@@ -156,7 +156,7 @@ with `render_user.html`:
 
 ---
 
-# Template Inheritance (1/2)
+## Template Inheritance (1/2)
 
 Let's define a base template, `base.html`, which defines a simple HTML skeleton:
 
@@ -185,7 +185,7 @@ Let's define a base template, `base.html`, which defines a simple HTML skeleton:
 
 ---
 
-# Template Inheritance (2/2)
+## Template Inheritance (2/2)
 
 The key to template inheritance is the `{% extends %}` tag.
 
@@ -209,7 +209,7 @@ use the `{{ parent() }}` function.
 
 ---
 
-# Template Naming and Locations (1/2)
+## Template Naming and Locations (1/2)
 
 By default, templates can live in two different locations:
 
@@ -231,7 +231,7 @@ but instead in the root `app/Resources/views/` directory.
 
 ---
 
-# Template Naming and Locations (2/2)
+## Template Naming and Locations (2/2)
 
 ### Example
 
@@ -252,7 +252,7 @@ path to the layout would be:
 
 ---
 
-# Overriding Bundle Templates
+## Overriding Bundle Templates
 
 Once you use a third-party bundle, you'll likely need to override and customize
 one or more of its templates.
@@ -268,7 +268,7 @@ from the bundle to: `app/Resources/FooBarBundle/views/Bar/index.html.twig`.
 
 ---
 
-# Overriding Core Templates
+## Overriding Core Templates
 
 The core **TwigBundle** contains a number of different templates that can be
 overridden by copying each from the `Resources/views/` directory of the
@@ -280,7 +280,7 @@ overridden by copying each from the `Resources/views/` directory of the
 
 ---
 
-# Rendering A Template
+## Rendering A Template
 
 ### Using The Base Controller
 
@@ -306,7 +306,7 @@ overridden by copying each from the `Resources/views/` directory of the
 
 ---
 
-# Linking to Pages
+## Linking to Pages
 
 Assuming the following routing definition:
 
@@ -336,7 +336,7 @@ The second argument is used to pass parameters:
 
 ---
 
-# Linking to Assets
+## Linking to Assets
 
     !jinja
     <script src={{ asset('js/script.js') }}></script>
@@ -364,7 +364,7 @@ adding a query parameter to all rendered asset paths:
 
 ---
 
-# Linking To Pages In JavaScript
+## Linking To Pages In JavaScript
 
 The [FOSJsRoutingBundle](https://github.com/FriendsOfSymfony/FOSJsRoutingBundle)
 allows you to **expose your routing in your JavaScript code**. That means you'll
@@ -391,7 +391,7 @@ JavaScript code to generate URLs:
 
 ---
 
-# Global Template Variables
+## Global Template Variables
 
 * `app.security`: the **security** context;
 * `app.user`: the **current user** object;

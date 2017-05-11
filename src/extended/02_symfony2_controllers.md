@@ -2,7 +2,7 @@
 
 ---
 
-# Request, Controller, Response
+## Request, Controller, Response
 
 A controller is a **PHP function** you create that takes information from the
 **HTTP request** and constructs and returns an **HTTP response**.
@@ -21,7 +21,7 @@ client.
 
 ---
 
-# The Simplest Page Ever
+## The Simplest Page Ever
 
 ### Routing Definition
 
@@ -49,7 +49,7 @@ client.
 
 ---
 
-# Controller Naming Pattern
+## Controller Naming Pattern
 
 Every route must have a `_controller` parameter, which dictates **which controller
 should be executed when that route is matched**.
@@ -68,7 +68,7 @@ Notice that Symfony adds the string `Controller` to the class name (`Blog` =>
 
 ---
 
-# Route Params as Controller Args
+## Route Params as Controller Args
 
 ### Routing Definition
 
@@ -98,7 +98,7 @@ Notice that Symfony adds the string `Controller` to the class name (`Blog` =>
 
 ---
 
-# The Request as a Controller Argument
+## The Request as a Controller Argument
 
 For convenience, you can also have Symfony pass you the Request object as an
 argument to your controller:
@@ -120,7 +120,7 @@ This is useful when you are working with forms.
 
 ---
 
-# The Base Controller Class
+## The Base Controller Class
 
 Symfony comes with a base `Controller` class that assists with some of the most
 common controller tasks and gives your controller class access to any resource
@@ -149,7 +149,7 @@ it might need:
 
 ---
 
-# The Response
+## The Response
 
 The only **requirement** for a controller is to return a `Response` object.
 
@@ -179,7 +179,7 @@ Or:
 
 ---
 
-# Basic Route Configuration
+## Basic Route Configuration
 
 The Symfony router lets you define URLs that you map to different areas of
 your application.
@@ -200,7 +200,7 @@ This route matches the homepage (`/`) and maps it to the
 
 ---
 
-# Routing with Placeholders (1/2)
+## Routing with Placeholders (1/2)
 
 ### Required Placeholders
 
@@ -218,7 +218,7 @@ inside your controller.
 
 ---
 
-# Routing with Placeholders (2/2)
+## Routing with Placeholders (2/2)
 
 ### Optional Placeholders
 
@@ -236,7 +236,7 @@ set to `1`. `/blog/2` will also match, giving the `page` parameter a value of `2
 
 ---
 
-# Requirements
+## Requirements
 
     !yaml
     blog:
@@ -262,7 +262,7 @@ the `{page}` parameter must be a digit (i.e. a number).
 
 ---
 
-# Including External Routing Resources
+## Including External Routing Resources
 
 All routes are loaded via a single configuration file, most of the time it will
 be `app/config/routing.yml`.
@@ -289,7 +289,7 @@ the new routing resource.
 
 ---
 
-# Generating URLs
+## Generating URLs
 
 The `Router` is able to generate both relative and absolute URLs.
 

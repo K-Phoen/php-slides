@@ -1,4 +1,4 @@
-# What Is Symfony?
+## What Is Symfony?
 
 First of all:
 
@@ -28,7 +28,7 @@ _Fabien Potencier,
 
 ---
 
-# Why You Should Use Symfony
+## Why You Should Use Symfony
 
 Symfony is built on powerful concepts:
 
@@ -44,7 +44,7 @@ Open Source, **MIT** licensed.
 
 ---
 
-# The Symfony Components
+## The Symfony Components
 
 The Components implement **common features** needed to develop websites.
 
@@ -68,7 +68,7 @@ There are ~50 components, including:
 
 ---
 
-# Getting Ready With Components
+## Getting Ready With Components
 
 Say you want to play with YAML files, start by requiring the `symfony/yaml`
 component into your `composer.json` file:
@@ -93,7 +93,7 @@ Install it by running `php composer.phar install`, and use it:
 
 ---
 
-# Full-Stack Framework
+## Full-Stack Framework
 
 The **Symfony Framework** accomplishes two distinct tasks:
 
@@ -116,7 +116,7 @@ applications** without imposing on your application.
 
 ---
 
-# The Symfony Request
+## The Symfony Request
 
     !php
     use Symfony\Component\HttpFoundation\Request;
@@ -143,7 +143,7 @@ applications** without imposing on your application.
 
 ---
 
-# The Symfony Response
+## The Symfony Response
 
     !php
     use Symfony\Component\HttpFoundation\Response;
@@ -168,7 +168,7 @@ applications** without imposing on your application.
 
 ---
 
-# The Simplest Front Controller Ever
+## The Simplest Front Controller Ever
 
     !php
     // index.php
@@ -190,7 +190,7 @@ applications** without imposing on your application.
 
 ---
 
-# The Symfony Application Flow
+## The Symfony Application Flow
 
 It's all about transforming a **Request** into a **Response**:
 <br><br>
@@ -199,7 +199,7 @@ It's all about transforming a **Request** into a **Response**:
 
 ---
 
-# Routing Definition
+## Routing Definition
 
 The routing system determines which PHP function should be executed based on
 information from the request and routing configuration you've created.
@@ -224,7 +224,7 @@ specific PHP method named `helloAction()` inside a class called
 
 ---
 
-# Your First Controller
+## Your First Controller
 
 In Symfony, a method in a controller is called an **action**. The convention is
 to suffix each method with `Action`.
@@ -248,7 +248,7 @@ Also, each controller should be suffixed with `Controller` and placed in a
 
 ---
 
-# A Symfony Project (1/2)
+## A Symfony Project (1/2)
 
 **Recommended** structure of a Symfony (3.x) project:
 
@@ -276,7 +276,7 @@ Also, each controller should be suffixed with `Controller` and placed in a
 
 ---
 
-# A Symfony Project (2/2)
+## A Symfony Project (2/2)
 
 Each directory has its own purpose (and set of files):
 
@@ -289,7 +289,7 @@ Each directory has its own purpose (and set of files):
 
 ---
 
-# Application Kernel
+## Application Kernel
 
 This is the **central part** of your application:
 
@@ -318,7 +318,7 @@ This is the **central part** of your application:
 
 ---
 
-# Application Configuration
+## Application Configuration
 
 An application consists of a collection of "bundles" representing all of the
 features and capabilities of your application.
@@ -336,7 +336,7 @@ again, a convention is just **A** way to do things, not **THE** way to do them.
 
 ---
 
-# YAML Configuration
+## YAML Configuration
 
 ### Example:
 
@@ -360,7 +360,7 @@ again, a convention is just **A** way to do things, not **THE** way to do them.
 
 ---
 
-# XML Configuration
+## XML Configuration
 
 ### Example:
 
@@ -383,7 +383,7 @@ again, a convention is just **A** way to do things, not **THE** way to do them.
 
 ---
 
-# PHP Configuration
+## PHP Configuration
 
 ### Example:
 
@@ -409,7 +409,7 @@ again, a convention is just **A** way to do things, not **THE** way to do them.
 
 ---
 
-# The Rules (Well... My Rules)
+## The Rules (Well... My Rules)
 
 The **main configuration** MUST be written in `YAML`:
 
@@ -437,7 +437,7 @@ The **DI Container configuration** MUST be written in `YAML`:
 
 ---
 
-# Environments
+## Environments
 
 An application can run in various environments. The different environments
 **share the same PHP code**, but use different configuration.
@@ -464,7 +464,7 @@ of your choice:
 
 ---
 
-# What Is A Bundle?
+## What Is A Bundle?
 
 _A **Bundle** is a directory containing a set of files (PHP files, stylesheets,
 JavaScripts, images, ...) that implement a **single feature** (a blog, a forum,
@@ -490,7 +490,7 @@ In order to use a bundle in your application, you need to register it in the
 
 ---
 
-# Bundle: Directory Structure
+## Bundle: Directory Structure
 
 Recommended structure for a bundle:
 
@@ -516,7 +516,7 @@ The `XXX` directory(ies) reflects the namespace structure of the bundle.
 
 ---
 
-# Bundle: Where To Put Your Classes?
+## Bundle: Where To Put Your Classes?
 
 <table>
     <colgroup>
@@ -571,7 +571,7 @@ The `XXX` directory(ies) reflects the namespace structure of the bundle.
 
 ---
 
-# Creating a Bundle
+## Creating a Bundle
 
 A **bundle** has to extend the `Symfony\Component\HttpKernel\Bundle\Bundle`
 class:
@@ -601,7 +601,7 @@ Then, you can register your bundle:
 
 ---
 
-# The Web Directory
+## The Web Directory
 
 The web root directory is the **home of all public and static files** including
 images, stylesheets, and JavaScript files. It is also where each front
@@ -626,7 +626,7 @@ Kernel** class, `AppKernel`, to **bootstrap the application**, for a given
 
 ---
 
-# Summary
+## Summary
 
 Creating a page is a three-step process involving a _route_, a _controller_, and
 (optionally) a _template_.

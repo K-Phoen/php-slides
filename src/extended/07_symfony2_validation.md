@@ -17,7 +17,7 @@ Validation is done by adding a set of rules (called **constraints**) to a class.
 
 ---
 
-# The Validator Component
+## The Validator Component
 
 This component is based on the [JSR303 Bean Validation
 specification](http://jcp.org/en/jsr/detail?id=303).
@@ -45,7 +45,7 @@ You can configure a set of **constraints** on it:
 
 ---
 
-# Using the `validator` Service
+## Using the `validator` Service
 
     !php
     $author = new Author();
@@ -72,7 +72,7 @@ indirectly when handling submitted form data.
 
 ---
 
-# Constraints
+## Constraints
 
 ![](../images/symfony_validation_constraints.jpg)
 
@@ -80,7 +80,7 @@ indirectly when handling submitted form data.
 
 ---
 
-# Constraint Targets (1/2)
+## Constraint Targets (1/2)
 
 Constraints can be **applied to a class property** or a **public getter method**
 (e.g. `getFullName()`). The first is the most common and easy to use, but the
@@ -106,7 +106,7 @@ itself.
 
 ---
 
-# Constraint Targets (2/2)
+## Constraint Targets (2/2)
 
 ### Getters
 
@@ -131,7 +131,7 @@ With the following code in the `Author` class:
 
 ---
 
-# Validation Groups (1/2)
+## Validation Groups (1/2)
 
 In some cases, you will **need to validate an object against only some of the
 constraints on that class**.
@@ -156,7 +156,7 @@ then apply validation against just one group of constraints.
 
 ---
 
-# Validation Groups (2/2)
+## Validation Groups (2/2)
 
 With the configuration seen before, there are **two validation groups**:
 
@@ -171,7 +171,7 @@ the second argument to the `validate()` method:
 
 ---
 
-# Using Validation Groups In Forms
+## Using Validation Groups In Forms
 
 If your object takes advantage of validation groups, you'll need to specify
 which validation group(s) your form should use:
@@ -198,7 +198,7 @@ the `configureOptions()` method:
 
 ---
 
-# Validating Values and Arrays
+## Validating Values and Arrays
 
     !php
     use Symfony\Component\Validator\Constraints\Email;
