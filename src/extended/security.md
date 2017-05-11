@@ -2,7 +2,7 @@
 
 ---
 
-# OWASP – Open Web Application Security Project
+## OWASP – Open Web Application Security Project
 
 * **Not-for-profit** organization focused on **improving the security** of software;
 * **Documentation** and **tools** to help learn about security, and protect your applications.
@@ -11,7 +11,7 @@
 
 ---
 
-# OWASP Top 10 – 2017
+## OWASP Top 10 – 2017
 
 1. Injection
 2. Broken Authentication and Session Management
@@ -32,7 +32,7 @@
 
 ---
 
-# OWASP definition
+## OWASP definition
 
 <p>
     <blockquote class="quote">
@@ -47,7 +47,7 @@
 
 ---
 
-# In other words
+## In other words
 
 * When an application **sends untrusted data to an interpreter**;
 * Attacker sends simple **text-based attacks** that exploit the syntax of the targeted interpreter;
@@ -61,7 +61,7 @@
 
 ---
 
-# SQL injection
+## SQL injection
 
 Unescaped user input causes the **premature end of a SQL query**,
 and allows a malicious query to be executed:
@@ -72,7 +72,7 @@ and allows a malicious query to be executed:
 
 ---
 
-# Directory traversal attack
+## Directory traversal attack
 
 Filesystem access combined to unvalidated user input allows attackers to
 **access private files**:
@@ -81,7 +81,7 @@ Filesystem access combined to unvalidated user input allows attackers to
     echo file_get_contents(__DIR__.'/'.$_GET['file']);
     // example.org?file=../../private.conf
 
-# Remote Code Execution
+## Remote Code Execution
 
 Unsafe input is **dynamically executed**:
 
@@ -91,7 +91,7 @@ Unsafe input is **dynamically executed**:
 
 ---
 
-# How To Prevent Injections?
+## How To Prevent Injections?
 
 ### Escape, escape, escape!
 
@@ -111,7 +111,7 @@ Unsafe input is **dynamically executed**:
 
 ---
 
-# In A Nutshell
+## In A Nutshell
 
 * Attackers **use leaks or flaws in the authentication** or **session management functions** to impersonate users;
 * May allows **some or even all accounts to be attacked**. Once successful, the **attacker can do anything the victim could do**.
@@ -119,7 +119,7 @@ Unsafe input is **dynamically executed**:
 
 ---
 
-# How To Prevent This?
+## How To Prevent This?
 
 * **Hash and sald passwords** properly (**bcrypt**/**Blowfish** please);
     * Use the [Password Hashing API](http://www.php.net/manual/en/book.password.php) in PHP
@@ -132,7 +132,7 @@ Unsafe input is **dynamically executed**:
 
 ---
 
-# PHP Session Configuration
+## PHP Session Configuration
 
     !yaml
     ; Helps mitigate XSS by telling the browser not to expose the cookie to
@@ -164,7 +164,7 @@ Unsafe input is **dynamically executed**:
 
 ---
 
-# In A Nutshell
+## In A Nutshell
 
 * The most prevalent web application security flaw!
 * When an **application includes user supplied data** in a page sent to the browser **without properly validating or escaping that content**;
@@ -174,9 +174,9 @@ Unsafe input is **dynamically executed**:
 
 ---
 
-# How To Prevent XSS?
+## How To Prevent XSS?
 
-## Do not trust anyone!
+### Do not trust anyone!
 
 * **Escape** all untrusted data based on the HTML context will go through `htmlspecialchars()`;
 * **Whitelist** input validation;
@@ -187,7 +187,7 @@ Unsafe input is **dynamically executed**:
 
 ---
 
-# Content Security Policy (CSP)
+## Content Security Policy (CSP)
 
 Defines the `Content-Security-Policy` HTTP header <br>that allows you to create
 a **whitelist of sources of trusted content**, and **instructs the browser** to
@@ -208,7 +208,7 @@ only execute or<br>render resources from those sources.
 
 ---
 
-# OWASP definition
+## OWASP definition
 
 <p>
     <blockquote class="quote">
@@ -222,7 +222,7 @@ only execute or<br>render resources from those sources.
 
 ---
 
-# How To Prevent This?
+## How To Prevent This?
 
 * Always **check the user credentials before allowing<br>access** to restricted content.
 
@@ -232,7 +232,7 @@ only execute or<br>render resources from those sources.
 
 ---
 
-# In A Nutshell
+## In A Nutshell
 
 * Attacker accesses **default accounts**, **unused pages**, **unpatched flaws**, **unprotected files** and directories, etc. to gain unauthorized access to or knowledge of the system;
 * Can completely **compromise the system without you knowing it**. **All of your data can be stolen** or modified slowly over time;
@@ -240,7 +240,7 @@ only execute or<br>render resources from those sources.
 
 ---
 
-# How To Prevent This?
+## How To Prevent This?
 
 * Have a process for **keeping on top of updates and patches**;
 * Disable *risky* PHP native functions (`shell_exec`, …)
@@ -254,7 +254,7 @@ only execute or<br>render resources from those sources.
 
 ---
 
-# In A Nutshell
+## In A Nutshell
 
 * Attacker creates **forged HTTP requests and tricks a victim into submitting
 them** via image tags, XSS, Form POSTs, or numerous other techniques. If the user is authenticated, the attack succeeds;
@@ -271,7 +271,7 @@ also to **perform any function the victim is authorized to use**.
 
 ---
 
-# CSRF With GET
+## CSRF With GET
 
 Using a zero-byte image attack:
 
@@ -290,7 +290,7 @@ Using a link, asking the victim to click on it:
 
 ---
 
-# CSRF With POST
+## CSRF With POST
 
 A malicious page can issue a POST request to any domain:
 
@@ -310,7 +310,7 @@ With a few lines of JavaScript:
 
 ---
 
-# How To Prevent This?
+## How To Prevent This?
 
 * Don't do "things" using the `GET` method;
 * Create **one unique token per user** (at least once per session);
@@ -319,7 +319,7 @@ With a few lines of JavaScript:
 
 ---
 
-# Same-Origin Policy
+## Same-Origin Policy
 
 The same-origin policy **restricts how** a document
 or **script** loaded from one origin **can
@@ -334,7 +334,7 @@ interact** with a resource from another origin.
 
 ---
 
-# In A Nutshell
+## In A Nutshell
 
 * Attacker identifies **a weak component through
 scanning or manual analysis**. He customizes the
@@ -351,7 +351,7 @@ host takeover and data compromise**.
 
 ---
 
-# How To Prevent This?
+## How To Prevent This?
 
 * **Keep** components **up to date**;
 * Identify all components and versions;

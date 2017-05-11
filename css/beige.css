@@ -1,0 +1,219 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+
+@font-face {
+    font-family: 'League Gothic';
+    src: url("css/font/league_gothic-webfont.eot");
+    src: url("css/font/league_gothic-webfont.eot?#iefix") format("embedded-opentype"), url("css/font/league_gothic-webfont.woff") format("woff"), url("css/font/league_gothic-webfont.ttf") format("truetype"), url("css/font/league_gothic-webfont.svg#LeagueGothicRegular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-size: 1.5em;
+    font-family: 'Droid Sans', sans-serif;
+}
+
+p, li {
+    line-height: 1.5em;
+}
+
+body,
+.slides,
+.slide.current {
+    color: #333333;
+    background-color: #f7f3de;
+}
+
+div.slide h1 {
+    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaaaaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 20px 20px rgba(0, 0, 0, 0.15);
+}
+
+div.slide h1,
+div.slide h2,
+div.slide h3,
+div.slide h4,
+div.slide h5,
+div.slide h6 {
+    font-family: "League Gothic", Impact, sans-serif;
+    letter-spacing: 0.02em;
+    color: #333333;
+    font-weight: bold;
+}
+
+div.slide h1 {
+    margin: auto;
+}
+
+.slide.future {
+    display:none;
+}
+
+.slide header:only-child h1 {
+    font-size: 70px;
+}
+
+.center {
+    text-align: center;
+}
+
+blockquote:before {
+    color: white;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    /*line-height: 1.5em;*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\f02d";
+    margin-right: 10px;
+    float: left;
+}
+
+blockquote {
+    margin: auto;
+    color: white;
+    text-indent: 0;
+    background: #3F3F3F;
+    padding: 10px 10px 7px 10px;
+    clear: both;
+}
+
+blockquote p:before,
+blockquote p:after,
+blockquote.no-before-icon:before {
+    content: none;
+}
+
+blockquote.no-before-icon i {
+    margin-right: 10px;
+    line-height: 1.5em;
+    float: left;
+}
+
+blockquote.quote p,
+blockquote.info p {
+    display: inline;
+}
+
+blockquote.quote:before,
+blockquote.info:before {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    /*line-height: 1.5em;*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+blockquote.quote:before {
+    content: "\f10d";
+}
+
+blockquote.info:before {
+    content: "\f05a";
+}
+
+a,
+a:visited {
+    color: #8b743d;
+}
+
+a:hover,
+a:focus {
+    color: #c0a86e;
+}
+
+.highlight {
+    background-color: inherit;
+}
+/*
+div.highlight:before {
+    content:"";
+    border-top: 1px dashed #333333;
+    position: absolute;
+    left: 25%;
+    width: 25%;
+}
+div.highlight:before {
+    content:"";
+    border-top: 1px dashed #333333;
+    position: absolute;
+    left: 25%;
+    width: 25%;
+}
+*/
+
+pre {
+    padding: 5px 10px 5px 10px;
+    font-size: 75%;
+    font-family: Courier, monospace;
+}
+
+code {
+    padding: 2px 6px 3px 6px;
+    font-size: 100%;
+    font-family: Courier, monospace;
+    background-color: #3F3F3F;
+    color: #DCDCDC;
+}
+
+strong, b {
+    font-weight: bolder;
+    font-size: 110%;
+}
+
+li {
+    padding: 5px 0;
+}
+
+ol li p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h1 {
+    margin-top: 10px;
+}
+
+h1 img {
+    margin-top: 30px;
+}
+
+img {
+    border-radius: 3px;
+    box-shadow: 3px 3px 10px 5px #373637;
+}
+
+.no-border h1 img {
+    margin-top: auto;
+}
+
+.no-border img {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.sidebar,
+.sidebar a,
+.sidebar a:visited {
+    color: #000;
+}
+
+#toc img {
+    display: none;
+}
+
+.slides .color-red h1 {
+    color: #C82D26;
+    font-size: 8em !important;
+}
+
+table {
+    margin-bottom: 3%;
+}
+
+.more-on-this-later {
+    display: none;
+}
