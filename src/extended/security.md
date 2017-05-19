@@ -121,7 +121,7 @@ Unsafe input is **dynamically executed**:
 
 ## How To Prevent This?
 
-* **Hash and sald passwords** properly (**bcrypt**/**Blowfish** please);
+* **Hash and salt passwords** properly (**bcrypt**/**Blowfish** please);
     * Use the [Password Hashing API](http://www.php.net/manual/en/book.password.php) in PHP
     * See also [password_compat](https://github.com/ircmaxell/password_compat)
 * **Never** ever **store passwords in clear text**;
@@ -215,7 +215,7 @@ only execute or<br>render resources from those sources.
     <strong>Restrictions</strong> on what authenticated users are allowed to do
     are <strong>not properly enforced</strong>. Attackers can exploit these flaws
     to <strong>access unauthorized functionality</strong> and/or data, such as
-    access other users' accounts, view sensitive files, modify other users'
+    access other users accounts, view sensitive files, modify other users
     data, change access rights, etc.
     </blockquote>
 </p>
