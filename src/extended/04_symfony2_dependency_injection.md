@@ -277,7 +277,6 @@ them as extensions.
 
     !bash
     $ php bin/console debug:container
-
     $ php bin/console debug:container foo
 
 > [http://symfony.com/doc/master/book/service_container.html](http://symfony.com/doc/master/book/service_container.html)

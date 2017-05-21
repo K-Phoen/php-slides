@@ -2,7 +2,7 @@
 
 ---
 
-# About Form Validation
+## About Form Validation
 
 In the previous section, you learned how a form can be submitted with valid or
 invalid data. In Symfony, **validation is applied to the underlying object**.
@@ -49,10 +49,10 @@ You can configure a set of **constraints** on it:
 
     !php
     $author = new Author();
-    // ... do something to the $author object
+    // … do something to the $author object
 
     $validator = $this->get('validator');
-    $errors    = $validator->validate($author);
+    $errors = $validator->validate($author);
 
     if (count($errors) > 0) {
         // Ooops, errors!
@@ -75,6 +75,8 @@ indirectly when handling submitted form data.
 ## Constraints
 
 ![](../images/symfony_validation_constraints.jpg)
+
+<center>**↑ list not exhaustive**</center>
 
 > [http://symfony.com/doc/master/book/validation.html#constraints](http://symfony.com/doc/master/book/validation.html#constraints)
 

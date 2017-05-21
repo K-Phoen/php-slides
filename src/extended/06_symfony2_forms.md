@@ -58,7 +58,7 @@ being able to hit "refresh" and re-post the data.
 
 ---
 
-# Handling Form Submissions
+## Handling Form Submissions
 
     !php
     use Symfony\Component\Form\Extension\Core\Type as Form;
@@ -237,13 +237,10 @@ un-rendered fields are output.
 
 * `form_enctype(form)`: if at least one field is a file upload field, this renders
   the obligatory `enctype="multipart/form-data"`;
-
 * `form_errors(form)`: renders any errors global to the whole form (field-specific
    errors are displayed next to each field);
-
 * `form_row(form.name)`: renders the label, any errors, and the HTML form widget
    for the given field inside, by default, a div element;
-
 * `form_rest(form)`: renders any fields that have not yet been rendered. It's
   usually a good idea to place a call to this helper at the bottom of each form.
   This helper is also useful for taking advantage of the automatic CSRF Protection.

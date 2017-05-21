@@ -102,14 +102,10 @@ name itself. They are ordered, and can be **optional** or **required**.
         $this
             // ...
             ->addArgument(
-                'name',
-                InputArgument::REQUIRED,
-                'Who do you want to greet?'
+                'name', InputArgument::REQUIRED, 'Who do you want to greet?'
             )
             ->addArgument(
-                'last_name',
-                InputArgument::OPTIONAL,
-                'Your last name?'
+                'last_name', InputArgument::OPTIONAL, 'Your last name?'
             );
     }
 
@@ -132,9 +128,7 @@ setup to accept a value or simply as a boolean flag without a value.
         $this
             // ...
             ->addOption(
-                'yell',
-                null,
-                InputOption::VALUE_NONE,
+                'yell', null, InputOption::VALUE_NONE,
                 'If set, the task will yell in uppercase letters'
             );
     }
@@ -158,9 +152,7 @@ setup to accept a value or simply as a boolean flag without a value.
         $this
             // ...
             ->addOption(
-                'iterations',
-                null,
-                InputOption::VALUE_REQUIRED,
+                'iterations', null, InputOption::VALUE_REQUIRED,
                 'How many times should the message be printed?',
                 1
             );

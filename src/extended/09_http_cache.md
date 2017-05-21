@@ -92,7 +92,7 @@ scalable, reliable and performant.
 
 ---
 
-# HTTP Caching
+## HTTP Caching
 
 HTTP specifies four response cache headers that are looked at here:
 
