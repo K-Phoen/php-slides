@@ -35,6 +35,32 @@ A4     498 x 750
 */
 
 /***************************************************************************/
+@page {
+    size: 1280px 960px;
+    @bottom-right {
+        content: counter(page);
+    }
+    /*background: black;
+    color: white;
+    font-family: DejaVu Sans, sans-serif;
+    font-size: 16pt;
+    margin: 96px;*/
+}
+
+@page:first {
+    @bottom-left { content: normal }
+    @bottom-right { content: normal }
+}
+
+body {
+    font-size: 28pt;
+    font-family: DejaVu Sans, sans-serif;
+    color: white;
+}
+
+div.slide {
+    page-break-before: avoid;
+}
 /* The bits that you probably want to override! */
 body {
   font-size: 20pt;
@@ -211,7 +237,6 @@ div.slide {
 /*  width      : 100%;
   height     : 100%;*/
   overflow   : hidden;
-  page-break-after: always;
 }
 
 div.slide div.inner {
@@ -1027,7 +1052,7 @@ blockquote:before {
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
-    line-height: 1.5em;
+    /*line-height: 1.5em;*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     content: "\f02d";
@@ -1065,7 +1090,7 @@ blockquote.info:before {
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
-    line-height: 1.5em;
+    /*line-height: 1.5em;*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin-right: 10px;
@@ -1084,7 +1109,7 @@ blockquote.quote:after {
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
-    line-height: 1.5em;
+    /*line-height: 1.5em;*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     content: "\f10e";
@@ -1548,12 +1573,12 @@ Embracing Open Source</p></section>
             
             
             <section><h2>Mac OS X</h2>
-<div class="highlight"><pre><span></span>$ curl -s http://php-osx.liip.ch/install.sh <span class="p">|</span> bash -s 7.0
+<div class="highlight"><pre><span></span>$ curl -s http://php-osx.liip.ch/install.sh <span class="p">|</span> bash -s <span class="m">7</span>.0
 </pre></div>
 
 <p></p>
 
-<div class="highlight"><pre><span></span>$ curl -s http://php-osx.liip.ch/install.sh <span class="p">|</span> bash -s 5.6
+<div class="highlight"><pre><span></span>$ curl -s http://php-osx.liip.ch/install.sh <span class="p">|</span> bash -s <span class="m">5</span>.6
 </pre></div>
 
 <blockquote>
@@ -2473,7 +2498,7 @@ This is different!</p></section>
             
             <section><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">who</span><span class="p">()</span> <span class="p">{</span> <span class="k">echo</span> <span class="nx">__CLASS__</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">who</span><span class="p">()</span> <span class="p">{</span> <span class="k">echo</span> <span class="no">__CLASS__</span><span class="p">;</span> <span class="p">}</span>
 
     <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">testSelf</span><span class="p">()</span>
     <span class="p">{</span>
@@ -2488,7 +2513,7 @@ This is different!</p></section>
 
 <span class="k">class</span> <span class="nc">B</span> <span class="k">extends</span> <span class="nx">A</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">who</span><span class="p">()</span> <span class="p">{</span> <span class="k">echo</span> <span class="nx">__CLASS__</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">who</span><span class="p">()</span> <span class="p">{</span> <span class="k">echo</span> <span class="no">__CLASS__</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -2787,7 +2812,7 @@ statement:</p>
 
 <span class="k">class</span> <span class="nc">MyClass</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">ClassA</span> <span class="nv">$a</span><span class="p">,</span> <span class="nx">ClassB</span> <span class="nv">$b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">ClassA</span> <span class="nv">$a</span><span class="p">,</span> <span class="nx">ClassB</span> <span class="nv">$b</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// ...</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -3231,7 +3256,7 @@ interface, i.e. the new base interface all exceptions inherit.</p>
             
             
             <section><p>Include the class definition before instantiating it:</p>
-<div class="highlight"><pre><span></span><span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/Model/Octopus.php&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/Model/Octopus.php&#39;</span><span class="p">;</span>
 
 <span class="nv">$paul</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Octopus</span><span class="p">();</span>
 <span class="nv">$paul</span><span class="o">-&gt;</span><span class="na">scream</span><span class="p">();</span>
@@ -3240,7 +3265,7 @@ interface, i.e. the new base interface all exceptions inherit.</p>
 <p>It works!</p>
 <p>But, what happens when the class is included again, somewhere else?</p>
 <div class="highlight"><pre><span></span><span class="c1">// somewhere further in your application</span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/Model/Octopus.php&#39;</span><span class="p">;</span>
+<span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/Model/Octopus.php&#39;</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">Squid</span> <span class="k">extends</span> <span class="nx">Octopus</span>
 <span class="p">{</span>
@@ -3284,7 +3309,7 @@ interface, i.e. the new base interface all exceptions inherit.</p>
             
             <section><p>The <code>require_once()</code> function is identical to <code>require()</code> except that PHP will
 check whether the file has already been included:</p>
-<div class="highlight"><pre><span></span><span class="k">require_once</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/Model/Octopus.php&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="k">require_once</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/Model/Octopus.php&#39;</span><span class="p">;</span>
 
 <span class="nv">$paul</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Octopus</span><span class="p">();</span>
 <span class="nv">$paul</span><span class="o">-&gt;</span><span class="na">scream</span><span class="p">();</span>
@@ -3292,7 +3317,7 @@ check whether the file has already been included:</p>
 
 <p>And somewhere else:</p>
 <div class="highlight"><pre><span></span><span class="c1">// somewhere further in your application</span>
-<span class="k">require_once</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/Model/Octopus.php&#39;</span><span class="p">;</span>
+<span class="k">require_once</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/Model/Octopus.php&#39;</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">Squid</span> <span class="k">extends</span> <span class="nx">Octopus</span>
 <span class="p">{</span>
@@ -3336,7 +3361,7 @@ a few files:</p>
 <div class="highlight"><pre><span></span><span class="sd">/**</span>
 <span class="sd"> * lib/Model/Location.php</span>
 <span class="sd"> */</span>
-<span class="k">require_once</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/../../common.php&#39;</span><span class="p">;</span>
+<span class="k">require_once</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/../../common.php&#39;</span><span class="p">;</span>
 <span class="k">require_once</span> <span class="nx">DOCROOT</span> <span class="o">.</span> <span class="s1">&#39;/lib/Model/ModelRepresentation.php&#39;</span><span class="p">;</span>
 <span class="k">require_once</span> <span class="nx">DOCROOT</span> <span class="o">.</span> <span class="s1">&#39;/lib/Model/User.php&#39;</span><span class="p">;</span>
 <span class="k">require_once</span> <span class="nx">DOCROOT</span> <span class="o">.</span> <span class="s1">&#39;/lib/Validator/Email.php&#39;</span><span class="p">;</span>
@@ -3424,14 +3449,14 @@ the use of <code>require_once()</code> thanks to the following functions:</p>
             <section><h3><code>__autoload()</code></h3>
 <div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">__autoload</span><span class="p">(</span><span class="nv">$className</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="k">require_once</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="nx">DIRECTORY_SEPARATOR</span> <span class="o">.</span> <span class="nv">$className</span> <span class="o">.</span> <span class="s1">&#39;.php&#39;</span><span class="p">;</span>
+    <span class="k">require_once</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="nx">DIRECTORY_SEPARATOR</span> <span class="o">.</span> <span class="nv">$className</span> <span class="o">.</span> <span class="s1">&#39;.php&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
 <h3><code>spl_autoload_register()</code></h3>
 <div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">my_autoload</span><span class="p">(</span><span class="nv">$className</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="k">require_once</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="nx">DIRECTORY_SEPARATOR</span> <span class="o">.</span> <span class="nv">$className</span> <span class="o">.</span> <span class="s1">&#39;.php&#39;</span><span class="p">;</span>
+    <span class="k">require_once</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="nx">DIRECTORY_SEPARATOR</span> <span class="o">.</span> <span class="nv">$className</span> <span class="o">.</span> <span class="s1">&#39;.php&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nb">spl_autoload_register</span><span class="p">(</span><span class="s1">&#39;my_autoload&#39;</span><span class="p">);</span>
@@ -5891,7 +5916,7 @@ the <strong>Symfony2 Console</strong> component:</p>
 <span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="c1">// require the Composer autoloader</span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">;</span>
+<span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">;</span>
 
 <span class="nv">$application</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Application</span><span class="p">();</span>
 <span class="nv">$application</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="nx">GreetCommand</span><span class="p">());</span>
@@ -6060,7 +6085,7 @@ will die: you have to separate the presentation from the business logic.</p>
 <span class="p">{</span>
     <span class="k">private</span> <span class="nv">$templateDir</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$templateDir</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$templateDir</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">templateDir</span> <span class="o">=</span> <span class="nv">$templateDir</span><span class="p">;</span>
     <span class="p">}</span>
@@ -6212,7 +6237,7 @@ you and much much more! Read more:
 <p>It <strong>should not</strong> contain any business logic.</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BananaController</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
         <span class="nx">BananaRepository</span> <span class="nv">$repository</span><span class="p">,</span>
         <span class="nx">TemplateEngine</span> <span class="nv">$engine</span>
     <span class="p">)</span> <span class="p">{</span>
@@ -7117,7 +7142,7 @@ One instance handles all the rows in the table.</p>
 <span class="p">{</span>
     <span class="k">private</span> <span class="nv">$con</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">Connection</span> <span class="nv">$con</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">Connection</span> <span class="nv">$con</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">con</span> <span class="o">=</span> <span class="nv">$con</span><span class="p">;</span>
     <span class="p">}</span>
@@ -7218,11 +7243,11 @@ One instance handles all the rows in the table.</p>
 <span class="sd"> */</span>
 <span class="k">public</span> <span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$name</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">con</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s">&lt;&lt;&lt;SQL</span>
+    <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">con</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s">&lt;&lt;&lt;</span><span class="dl">SQL</span><span class="s"></span>
 <span class="s">UPDATE bananas</span>
 <span class="s">SET name = :name</span>
 <span class="s">WHERE id = :id</span>
-<span class="s">SQL</span>
+<span class="dl">SQL</span>
     <span class="p">);</span>
 
     <span class="k">return</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">([</span><span class="s1">&#39;:id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">,</span> <span class="s1">&#39;:name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$name</span><span class="p">]);</span>
@@ -7563,7 +7588,7 @@ while keeping them independent of each other and the mapper itself.</p>
 <span class="p">{</span>
     <span class="k">private</span> <span class="nv">$con</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">Connection</span> <span class="nv">$con</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">Connection</span> <span class="nv">$con</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">con</span> <span class="o">=</span> <span class="nv">$con</span><span class="p">;</span>
     <span class="p">}</span>
@@ -8005,7 +8030,7 @@ patterns, often seen as an <strong>Active Record</strong> approach.</p>
 
     <span class="k">private</span> <span class="nv">$name</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nx">Name</span> <span class="nv">$name</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nx">Name</span> <span class="nv">$name</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span>   <span class="o">=</span> <span class="nv">$id</span><span class="p">;</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$name</span><span class="p">;</span>
@@ -8062,7 +8087,7 @@ identity is called a <strong>Value Object</strong>:</p>
 
     <span class="k">private</span> <span class="nv">$lastName</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$firstName</span><span class="p">,</span> <span class="nv">$lastName</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$firstName</span><span class="p">,</span> <span class="nv">$lastName</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">firstName</span> <span class="o">=</span> <span class="nv">$firstName</span><span class="p">;</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lastName</span>  <span class="o">=</span> <span class="nv">$lastName</span><span class="p">;</span>
@@ -8371,7 +8396,7 @@ objects. The idea is that a question about an object, is answered by a
             
             <section><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OrSpecification</span> <span class="k">implements</span> <span class="nx">CustomerSpecification</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
         <span class="nx">CustomerSpecification</span> <span class="nv">$s1</span><span class="p">,</span>
         <span class="nx">CustomerSpecification</span> <span class="nv">$s2</span>
     <span class="p">)</span> <span class="p">{</span>
@@ -8432,7 +8457,7 @@ objects. The idea is that a question about an object, is answered by a
             
             <section><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NotSpecification</span> <span class="k">implements</span> <span class="nx">CustomerSpecification</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">CustomerSpecification</span> <span class="nv">$s</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">CustomerSpecification</span> <span class="nv">$s</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">s</span> <span class="o">=</span> <span class="nv">$s</span><span class="p">;</span>
     <span class="p">}</span>
@@ -8493,7 +8518,7 @@ objects. The idea is that a question about an object, is answered by a
 <span class="p">{</span>
     <span class="k">private</span> <span class="nv">$specification</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">CustomerIsPremium</span> <span class="nv">$specification</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">CustomerIsPremium</span> <span class="nv">$specification</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">specification</span> <span class="o">=</span> <span class="nv">$specification</span><span class="p">;</span>
     <span class="p">}</span>
@@ -9499,7 +9524,7 @@ Security</a></p>
 
     <span class="k">private</span> <span class="nv">$var3</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">BarInterface</span> <span class="nv">$bar</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$opts</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">BarInterface</span> <span class="nv">$bar</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$opts</span> <span class="o">=</span> <span class="p">[])</span>
     <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">bar</span>  <span class="o">=</span> <span class="nv">$bar</span><span class="p">;</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">opts</span> <span class="o">=</span> <span class="nv">$opts</span><span class="p">;</span>
@@ -9753,7 +9778,7 @@ the upper/policy layers.</p>
     <span class="k">private</span> <span class="nv">$bar</span><span class="p">;</span>
 
     <span class="c1">// **NOT** DI</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
     <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">bar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Bar</span><span class="p">();</span>
     <span class="p">}</span>
@@ -9762,7 +9787,7 @@ the upper/policy layers.</p>
 
 <p>When a dependency is provided externally, then the system is using DI:</p>
 <div class="highlight"><pre><span></span><span class="c1">// DI!</span>
-<span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">Bar</span> <span class="nv">$bar</span><span class="p">)</span>
+<span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">Bar</span> <span class="nv">$bar</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">bar</span> <span class="o">=</span> <span class="nv">$bar</span><span class="p">;</span>
 <span class="p">}</span>
@@ -9817,7 +9842,7 @@ get hold of all of the services that an application might need.</p>
 <span class="p">{</span>
     <span class="k">private</span> <span class="nv">$bar</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
     <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">bar</span> <span class="o">=</span> <span class="nx">ServiceLocator</span><span class="o">::</span><span class="na">getBar</span><span class="p">();</span>
     <span class="p">}</span>
@@ -9861,7 +9886,7 @@ get hold of all of the services that an application might need.</p>
 <span class="p">{</span>
     <span class="k">private</span> <span class="nv">$bar</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">BarInterface</span> <span class="nv">$bar</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">BarInterface</span> <span class="nv">$bar</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">bar</span> <span class="o">=</span> <span class="nv">$bar</span><span class="p">;</span>
     <span class="p">}</span>
@@ -10083,8 +10108,8 @@ Container written in PHP.
 It fits in a <em>tweet</em> (less than 140 characters):</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Container</span> <span class="p">{</span>
     <span class="k">protected</span> <span class="nv">$s</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="k">function</span> <span class="nf">__set</span><span class="p">(</span><span class="nv">$k</span><span class="p">,</span> <span class="nv">$c</span><span class="p">)</span> <span class="p">{</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">s</span><span class="p">[</span><span class="nv">$k</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$c</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">function</span> <span class="nf">__get</span><span class="p">(</span><span class="nv">$k</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">s</span><span class="p">[</span><span class="nv">$k</span><span class="p">](</span><span class="nv">$this</span><span class="p">);</span> <span class="p">}</span>
+    <span class="k">function</span> <span class="fm">__set</span><span class="p">(</span><span class="nv">$k</span><span class="p">,</span> <span class="nv">$c</span><span class="p">)</span> <span class="p">{</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">s</span><span class="p">[</span><span class="nv">$k</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$c</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">function</span> <span class="fm">__get</span><span class="p">(</span><span class="nv">$k</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">s</span><span class="p">[</span><span class="nv">$k</span><span class="p">](</span><span class="nv">$this</span><span class="p">);</span> <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nv">$c</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Container</span><span class="p">();</span>
@@ -10656,11 +10681,11 @@ from it:</p>
             
             <section><p>Running the test suite:</p>
 <div class="highlight"><pre><span></span>$ phpunit
-PHPUnit 3.7.0 by Sebastian Bergmann.
+PHPUnit <span class="m">3</span>.7.0 by Sebastian Bergmann.
 
 .
 
-Time: <span class="m">1</span> seconds, Memory: 5.25Mb
+Time: <span class="m">1</span> seconds, Memory: <span class="m">5</span>.25Mb
 
 OK <span class="o">(</span><span class="m">1</span> test, <span class="m">1</span> assertion<span class="o">)</span>
 </pre></div>
@@ -11247,7 +11272,7 @@ business-model, libraries and application low-level code.</p>
 
 <span class="c1">// Adapters: Local, Amazon Web Services - S3, Rackspace Cloud Files,</span>
 <span class="c1">//           Dropbox, Ftp, Sftp, Zip, WebDAV</span>
-<span class="nv">$filesystem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">F\Filesystem</span><span class="p">(</span><span class="k">new</span> <span class="nx">F\Adapter\Local</span><span class="p">(</span><span class="nx">__DIR__</span><span class="o">.</span><span class="s1">&#39;/path/to/dir&#39;</span><span class="p">));</span>
+<span class="nv">$filesystem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">F\Filesystem</span><span class="p">(</span><span class="k">new</span> <span class="nx">F\Adapter\Local</span><span class="p">(</span><span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/path/to/dir&#39;</span><span class="p">));</span>
 
 <span class="c1">// Create a file</span>
 <span class="nv">$filesystem</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s1">&#39;path/to/file.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;contents&#39;</span><span class="p">);</span>
