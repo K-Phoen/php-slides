@@ -121,7 +121,7 @@ Unsafe input is **dynamically executed**:
 
 ## How To Prevent This?
 
-* **Hash and sald passwords** properly (**bcrypt**/**Blowfish** please);
+* **Hash and salt passwords** properly (**bcrypt**/**Blowfish** please);
     * Use the [Password Hashing API](http://www.php.net/manual/en/book.password.php) in PHP
     * See also [password_compat](https://github.com/ircmaxell/password_compat)
 * **Never** ever **store passwords in clear text**;
